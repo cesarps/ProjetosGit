@@ -1,14 +1,16 @@
 <h1 id="events">Listando  agendamentos</h1>
 
+<div class="container">
+
 <% @usuario = current_usuario %>
 
 
-<table id="tabela_index" cellpadding="3" cellspacing="3" align="center">
+<table id="tabela_index" class="table table-bordered display">
   <tr>
-    <th class="t1">Data inicio</th>
-    <th class="t1">Data fim</th>
-    <th class="t1">Hora Inicio</th>
-    <th class="t1">Hora Fim</th>
+    <th class="t1 text-center">Data inicio</th>
+    <th class="t1 text-center">Data fim</th>
+    <th class="t1 text-center">Hora Inicio</th>
+    <th class="t1 text-center">Hora Fim</th>
     <th></th>
   </tr>
 
@@ -18,10 +20,11 @@
       <td class="t1"><%= ea.data_fim.strftime("%d/%m/%Y") %> </td>
       <td class="t1"><%= ea.inicio %> </td>
       <td class="t1"><%= ea.fim %> </td>
-      <td class="t1"><%= link_to 'Excluir', ea, method: :delete, confirm: "Tem certeza?",  redirect_to: calendar_index_path %></td>
+      <td class="t1 text-center"><%= link_to 'Excluir', ea, method: :delete, confirm: "Tem certeza?",  redirect_to: calendar_index_path %></td>
     </tr>
     <% end %>
   </table>
 
+</div>
 
-<p align="center"> <%= link_to "Voltar", index_event_admin_path %> </p>
+<%= link_to "Voltar", index_event_admin_path %> </p>

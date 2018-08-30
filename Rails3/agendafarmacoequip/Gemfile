@@ -36,9 +36,6 @@ gem 'mysql'
 gem 'devise'
 # end
 
-# bootstrap e jquery
-#gem 'twitter-bootstrap-rails', '3.2.2'
-#gem 'jquery-rails'
 
 
 

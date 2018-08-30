@@ -1,18 +1,24 @@
 <h1 id="events">Listando  eventos</h1>
 
+<div class="container">
+
 <% @usuario = current_usuario %>
 
-<table id="tabela_index" cellpadding="3" cellspacing="3" align="center">
+<table id="tabela_index" class=" table table-bordered display" >
   <tr>
-    <th class="t1">Equipamento </th>
-    <th class="t1">Titulo</th>
-    <th class="t1">Registrado para</th>
-    <th class="t1">Início</th>
-    <th class="t1">Fim</th>
-    <th class="t1">Descrição</th>
-    <th class="t1"></th>
-    <th class="t1"></th>
-    <th class="t1"></th>
+    <th class="t1 text-center">Equipamento </th>
+    <th class="t1 text-center">Titulo</th>
+    <th class="t1 text-center">Registrado para</th>
+    <th class="t1 text-center">Início</th>
+    <th class="t1 text-center">Fim</th>
+    <th class="t1 text-center">Descrição</th>
+    <th class="t1 text-center" colspan="4"></th>
+    <!--
+    <th class="t1 text-center"></th>
+    <th class="t1 text-center"></th>
+    <th class="t1 text-center"></th>
+    <th class="t1 text-center"></th>
+    -->
   </tr>
 
   <% @events.each do |ea| %>
@@ -26,17 +32,19 @@
         <td class="t1"><%= link_to 'Mostrar', :controller => 'events', :action => 'show_one', :id => ea.id %></td>
 
         <% if @usuario.email == ea.u_email  %>
-            <td class="t1"><%= link_to 'Editar', edit_event_path(ea) %></td>
-            <td class="t1"><%= link_to 'Excluir', ea, method: :delete, confirm: "Tem certeza?" %></td>
-            <td class="t1"><%= link_to "Mostrar agendamentos", show_ags_path(ea.id) %>  </td>
+            <td class="t1 text-center"><%= link_to 'Editar', edit_event_path(ea) %></td>
+            <td class="t1 text-center"><%= link_to 'Excluir', ea, method: :delete, confirm: "Tem certeza?" %></td>
+            <td class="t1 text-center"><%= link_to "Mostrar agendamentos", show_ags_path(ea.id) %>  </td>
         <% end %>
 
       </tr>
   <% end %>
 </table>
 
+</div>
+
 <br/>
 <div id="rodape" align="center">
-  <%= link_to 'ver calendario', calendar_index_path %> |
+  <%= link_to 'Ver calendario', calendar_index_path %> |
   <%= link_to 'Novo Evento', new_event_path %>
 </div>
