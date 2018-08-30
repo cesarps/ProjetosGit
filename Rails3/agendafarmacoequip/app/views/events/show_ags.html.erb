@@ -1,0 +1,26 @@
+<h1 id="events">Listando  agendamentos</h1>
+
+<% @usuario = current_usuario %> <!-- descobrir de onde vem esse current_usuario para tentar buscar o administrador -->
+
+<table id="tabela_index" cellpadding="3" cellspacing="3" align="center">
+  <tr>
+    <th class="t1">Data inicio</th>
+    <th class="t1">Data fim</th>
+    <th class="t1">Hora Inicio</th>
+    <th class="t1">Hora Fim</th>
+    <th></th>
+  </tr>
+
+    <% @event.agendamentos.each do |ea| %>
+    <tr>
+      <td class="t1"><%= ea.data_inicio.strftime("%d/%m/%Y") %> </td>
+      <td class="t1"><%= ea.data_fim.strftime("%d/%m/%Y") %> </td>
+      <td class="t1"><%= ea.inicio %> </td>
+      <td class="t1"><%= ea.fim %> </td>
+      <td class="t1"><%= link_to 'Excluir', ea, method: :delete, confirm: "Tem certeza?",  redirect_to: calendar_index_path %></td>
+
+    </tr>
+    <% end %>
+  </table>
+
+<p align="center"> <%= link_to "Voltar", index_event_path %> </p>

@@ -1,0 +1,210 @@
+<% if usuario_signed_in? %>
+
+    <p id="notice"><%= notice %></p>
+
+    <h1 id="events" align="center">Mostrando evento:</h1>
+
+    <% @event = Event.find(params[:id]) %>
+        <table id="tab_show_one" cellpadding="8" align="center">
+
+        <tr>
+            <td>
+                <b>Sala:</b>
+                <% @tipo = Tipo.find(:all) %>
+                <% @tipo.each do |t| %>
+                    <% if t.id == @event.tipo_id %>
+                        <%= t.nome %>
+                    <% end %>
+                <% end %>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <b>Título:</b>
+                <%= @event.title %>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <b>Registrado para:</b>
+                <%= @event.regpara %>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <b> Registrado por: </b>
+                <% @usuario = Usuario.find(:all) %>
+                <% @usuario.each do |u| %>
+                    <% if u.email == @event.u_email  %>
+                        <%= u.nome_completo %>
+                    <% end %>
+                <% end %>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <b>Início em:</b>
+                <%= @event.starts_at.to_datetime.strftime("%d/%m/%Y %H:%M") %>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <b>Término em:</b>
+                <%= @event.ends_at.to_datetime.strftime("%d/%m/%Y %H:%M") %>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <b>Dias selecionados:</b>
+                <ul>
+                    <% if @event.domingo == true %>
+                        <li>Domingo</li>
+                    <% end %>
+                    <% if @event.segunda == true %>
+                        <li>Segunda-feira</li>
+                    <% end %>
+                    <% if @event.terca == true %>
+                        <li>Terça-feira</li>
+                    <% end %>
+                    <% if @event.quarta == true %>
+                        <li>Quarta-feira</li>
+                    <% end %>
+                    <% if @event.quinta == true %>
+                        <li>Quinta-feira</li>
+                    <% end %>
+                    <% if @event.sexta == true %>
+                        <li>Sexta-feira</li>
+                    <% end %>
+                    <% if @event.sabado == true %>
+                        <li>Sábado</li>
+                    <% end %>
+                </ul>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <b>Descrição:</b>
+                <%= @event.description %>
+            </td>
+        </tr>
+    </table>
+    <br><br>
+    <div id="rodape" align="center">
+        <%= link_to 'Voltar', index_event_path %>
+    </div>
+
+<!-- PARTE ISOLADA DO ADMINISTRADOR: NÃO HÁ ESSE LINK NA AREA DO ADMINISTRADO PARA GERAR ESSA TELA. TODA ESSA PARTE PODE SER DESCONSIDERADA -->
+
+<% elsif admin_signed_in? %>
+    <p id="notice"><%= notice %></p>
+
+    <h1 id="events">Mostrando evento.</h1>
+
+    <% @event = Event.find(params[:id]) %>
+    <table id="tab_show_one" cellpadding="8" align="center">
+
+        <tr class="par">
+            <td>
+                <b>Sala:</b>
+                <% @tipo = Tipo.find(:all) %>
+                <% @tipo.each do |t| %>
+                    <% if t.id == @event.tipo_id %>
+                        <%= t.nome %>
+                    <% end %>
+                <% end %>
+            </td>
+        </tr>
+
+        <tr class="impar">
+            <td>
+                <b>Título:</b>
+                <%=  @event.title %>
+            </td>
+        </tr>
+
+        <tr class="par">
+            <td>
+                <b>Registrado para:</b>
+                <%= @event.regpara %>
+            </td>
+        </tr>
+
+        <tr class="impar">
+            <td>
+                <b> Registrado por: </b>
+            </td>
+        </tr>
+
+        <tr class="par">
+            <td>
+                <b>Início em:</b>
+                <%= @event.starts_at.to_datetime.strftime("%d/%m/%Y %H:%M") %>
+            </td>
+        </tr>
+
+        <tr class="impar">
+            <td>
+                <b>Término em:</b>
+                <%= @event.ends_at.to_datetime.strftime("%d/%m/%Y %H:%M") %>
+            </td>
+        </tr>
+
+        <tr class="par">
+            <td>
+                <b>Dias selecionados:</b>
+                <ul>
+                    <% if @event.domingo == true %>
+                        <li>Domingo</li>
+                    <% end %>
+                    <% if @event.segunda == true %>
+                        <li>Segunda-feira</li>
+                    <% end %>
+                    <% if @event.terca == true %>
+                        <li>Terça-feira</li>
+                    <% end %>
+                    <% if @event.quarta == true %>
+                        <li>Quarta-feira</li>
+                    <%  end %>
+                    <% if @event.quinta == true %>
+                        <li>Quinta-feira</li>
+                    <% end %>
+                    <% if @event.sexta == true %>
+                        <li>Sexta-feira</li>
+                    <% end %>
+                    <% if @event.sabado == true %>
+                        <li>Sábado</li>
+                    <% end %>
+                </ul>
+            </td>
+        </tr>
+
+        <tr class="impar">
+            <td>
+                <b>Descrição:</b>
+                <%= @event.description %>
+            </td>
+        </tr>
+
+        <tr class="par">
+            <td>
+                <b>Confirmado pelo administrador:</b>
+                <% if @event.pendente == true %>
+                     Não
+                <% elsif @event.pendente == false %>
+                    Sim
+                <% end %>
+            </td>
+        </tr>
+    </table>
+    <br><br>
+    <div id="rodape" align="center">
+        <%= link_to 'Voltar',index_event_admin_path %>
+    </div>
+<% end %>

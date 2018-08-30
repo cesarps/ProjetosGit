@@ -1,0 +1,10 @@
+<% if usuario_signed_in? %>
+    <%= render :partial => "menu" %>
+    <div id='calendar'></div>
+<% elsif admin_signed_in? %>
+    <%= render :partial => "menu" %>
+    <div id="calendar"></div>
+<% else %>
+    <%= render :partial => "menu" %>
+    <div id='calendar'></div>
+<% end %>

@@ -1,0 +1,48 @@
+<%= form_for(@tipo) do |f| %>
+    <% if @tipo.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@tipo.errors.count, "error") %> Falha ao salvar:</h2>
+
+          <ul>
+            <% @tipo.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :nome,"Nome" %><br />
+      <%= f.text_field :nome %>
+    </div>
+    <div class="field">
+      <%= f.label :cor,"Cor" %><br />
+      <%= f.text_field :cor %>
+    </div>
+    <div class="field">
+      <%= f.label :email,"E-mail do administrador" %><br />
+      <%= f.text_field :email %>
+    </div>
+    <div class="field">
+      <%= f.label :observacao, "Observação" %><br />
+      <%= f.text_area :observacao %>
+    </div>
+    <div>
+      <%= f.check_box :confirmacao %>
+      <%= f.label :confirmacao, "Equipamento necessita confirmação." %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Enviar" %>
+    </div>
+<% end %>
+
+<script>
+$(document).ready(function(){
+  $("#tipo_cor").spectrum({
+    preferredFormat: "hex",
+    chooseText: "Escolha a cor",
+    cancelText: "Cancelar"
+  });
+});
+</script>

@@ -1,0 +1,93 @@
+#body {
+    margin-top: 40px;
+    #text-align: center;
+    font-size: 14px;
+    font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+}
+
+#calendar {
+    width: 900px;
+    margin: 0 auto;
+}
+
+.menu {
+
+}
+
+.tabela_menu {
+    background-color: #9AFF9A;
+    border:3px solid #9C9C9C;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    width: 300px;
+}
+
+#tabela_index {
+    border-width: 1px;
+    border-style: ridge;
+    border-color: #9C9C9C;
+    background-color: #D3D3D3;
+}
+
+.t1 {
+    border-width: 2px;
+    border-style: ridge;
+    border-color: #9C9C9C;
+    background-color: #9AFF9A;
+}
+
+#events {
+    color: #4F4F4F
+}
+
+#rodape {
+    border-width: 2px;
+    border-style: ridge;
+    border-color: #9C9C9C;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: #9AFF9A;
+}
+
+.impar {
+    background-color: #9AFF9A;
+}
+
+.par {
+    background-color: #7CCD7C;
+}
+
+#tab_show_one {
+    border-width: 10px;
+    border-style: ridge;
+    border-color: #9C9C9C;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+}
+
+#tab_show {
+    border-width: 10px;
+    border-style: ridge;
+    border-color: #9C9C9C;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+#logout {
+
+       border:3px solid #9C9C9C;
+       border-bottom-left-radius: 10px;
+       border-bottom-right-radius: 10px;
+       border-top-left-radius: 10px;
+       border-top-right-radius: 10px;
+    background-color: #9AFF9A;
+}

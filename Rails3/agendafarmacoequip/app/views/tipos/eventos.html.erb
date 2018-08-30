@@ -1,0 +1,41 @@
+<h2 align="center">Estes são os agendamentos marcados para essa sala ou equipamento selecionado:</h2>
+
+
+
+<!-- cria uma tabela para listar os eventos -->
+<table id="tabela_index" cellpadding="3" cellspacing="3" align="center">
+  <tr>
+    <th class="t1">Titulo</th>
+    <th class="t1">Início</th>
+    <th class="t1">Fim</th>
+    <th class="t1">Descrição</th>
+    <th class="t1"></th>
+    <th class="t1"></th>
+    <th class="t1"></th>
+  </tr>
+
+  <!-- acha todos os eventos e compara para ver se o tipo é compatível -->
+  <% @event = Event.find(:all) %>
+  <% @event.each do |e| %>
+      <% if e.tipo_id == @tipo.id %>
+
+          <!-- completa a tabela com os dados dos eventos existentes que são compatíveis com o tipo -->
+          <tr>
+            <td class="t1"><%= e.title %></td>
+            <td class="t1"><%= e.starts_at.to_datetime.strftime("%d/%m/%Y %H:%M") %></td>
+            <td class="t1"><%= e.ends_at.to_datetime.strftime("%d/%m/%Y %H:%M") %></td>
+            <td class="t1"><%= e.description %></td>
+            <td class="t1"><%= link_to 'Mostrar', :controller => 'admin', :action => 'show', :id => e.id %></td>
+            <% if e.pendente == true %>
+                <td class="t1" align="center"><%= link_to 'Aceitar', :controller => 'admin_event', :action => 'aceita', :id => e.id %></td>
+                <td class="t1"><%= link_to 'Recusar', :controller => 'admin_event', :action => 'rejeita', :id => e.id %></td>
+            <% else %>
+                <td class="t1">Confirmado</td>
+            <% end %>
+          </tr>
+      <% end %>
+  <% end %>
+</table>
+
+
+<p align="center"> <%= link_to "Voltar", tipos_path %>  </p>

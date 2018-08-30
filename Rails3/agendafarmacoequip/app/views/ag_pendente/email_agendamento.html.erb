@@ -1,0 +1,29 @@
+<h1>Confirmação de agendamento.</h1>
+
+<p>Foi solicitado uma confirmação para o uso da sala/equipamento <%= @tipo.nome %>.</p>
+
+<h2>Detalhes do agendamento:</h2>
+
+<table>
+  <tr>
+    <td>Sala/Equipamento:</td>
+    <td><%= @tipo.nome %></td>
+  </tr>
+
+  <tr>
+    <td>Título</td>
+    <td><%= @event.title %></td>
+  </tr>
+
+  <tr>
+    <td>Início em:</td>
+    <td><%= @event.starts_at.to_datetime.strftime("%d/%m/%Y %H:%M") %></td>
+  </tr>
+
+  <tr>
+    <td>Término em:</td>
+    <td><%= @event.ends_at.to_datetime.strftime("%d/%m/%Y %H:%M") %></td>
+  </tr>
+</table>
+
+<a href="http://143.107.123.29/agendamento/tipos">ver evento</a>

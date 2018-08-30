@@ -1,0 +1,61 @@
+<h1>Sua solicitação de agendamento foi confirmada.</h1>
+
+<p>
+  Sua solicitação de agendamento foi aceita pelo administrador.
+</p>
+
+    <h2>Detalhes do agendamento:</h2>
+
+<table>
+  <tr><td>
+    <b>Título:</b>
+    <%= @event.title %>
+  </td></tr>
+
+  <tr><td>
+    <b>Início em:</b>
+    <%= @event.starts_at.to_datetime.strftime("%H:%M")  %>
+  </td></tr>
+
+  <tr><td>
+    <b>Término em:</b>
+    <%= @event.ends_at.to_datetime.strftime("%H:%M") %>
+  </td></tr>
+
+  <tr><td>
+
+    <b>Dias selecionados:</b>
+    <ul>
+      <% if @event.domingo == true %>
+          <li>Domingo</li>
+      <% end %>
+      <% if @event.segunda == true %>
+          <li>Segunda-feira</li>
+      <% end %>
+      <% if @event.terca == true %>
+          <li>Terça-feira</li>
+      <% end %>
+      <% if @event.quarta == true %>
+          <li>Quarta-feira</li>
+      <% end %>
+      <% if @event.quinta == true %>
+          <li>Quinta-feira</li>
+      <% end %>
+      <% if @event.sexta == true %>
+          <li>Sexta-feira</li>
+      <% end %>
+      <% if @event.sabado == true %>
+          <li>Sábado</li>
+      <% end %>
+    </ul>
+  </td></tr>
+
+  <tr><td>
+    <b>Descrição:</b>
+    <%= @event.description %>
+  </td></tr>
+</table>
+
+<p>
+  Caso voçê não tenha feito a solicitação por favor entre em contato com o administrador.
+</p>

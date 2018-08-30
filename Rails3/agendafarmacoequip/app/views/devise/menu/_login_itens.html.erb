@@ -1,0 +1,11 @@
+<% if usuario_signed_in? %>
+
+    <p align="right"> <%=  link_to "logout", destroy_usuario_session_path, :method => :delete %></p>
+
+<% end %>
+
+<% if admin_signed_in? %>
+
+    <p align="right"> <%=  link_to "logout", destroy_admin_session_path, :method => :delete %></p>
+
+<% end %>

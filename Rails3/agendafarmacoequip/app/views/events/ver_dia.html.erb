@@ -1,0 +1,38 @@
+<fieldset>
+    <legend>Verifique os eventos do dia e sala/equipamento:</legend>
+    <%= form_tag :action => 'monta_relatorio' do %>
+        <div class="field">
+          <%= label_tag("Data") %>
+          <%= date_select 'dia','dia' %>
+        </div>
+        <div class="field">
+            <% @u = current_usuario %>
+            <% @array = [] %>       <!-- cria um array que passa os parametros para a busca -->
+            <% @sel = [] %>
+
+            <% Tipo.find(:all).each do |t| %>           <!-- acha todos os tipos -->
+
+              <% TipoUsuario.find(:all).each do |tu| %>                    <!-- acha os tipos em que o usuario pode  -->
+                  <% if t.id == tu.tipo_id && @u.id == tu.usuario_id %>    <!--  fazer seus agendamentos -->
+
+                      <% @array.push [t.nome, t.id]%>       <!-- recebe os valores do array -->
+
+                      <% break %>                           <!-- quebra o loop -->
+                  <% end %>
+              <% end %>
+            <% end %>
+            <%= label_tag("Agendamento") %>
+            <% @array.each do |tipotodos| %>
+                <% @sel.push  tipotodos %>
+            <%end%>
+            <%= select_tag(:sala, options_for_select(@sel))%>        <!-- cria o combobox com os valores do array -->
+            <br>
+            <br>
+            <div class="actions">
+                <%= submit_tag "Buscar" %>
+            </div>
+         </div>
+
+    <% end %>
+</fieldset>
+<%= link_to "Voltar", calendar_index_path %>

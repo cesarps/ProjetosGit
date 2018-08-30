@@ -1,0 +1,26 @@
+<h1 align="center">Listando Equipamentos</h1>
+
+<table align="center">
+  <tr>
+    <th>Nome</th>
+    <th>Observação</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tipos.each do |tipo| %>
+  <tr>
+    <td><%= tipo.nome %></td>
+    <td><%= tipo.observacao %></td>
+    <td><%= link_to 'Mostrar', tipo %></td>
+    <td><%= link_to 'Editar', edit_tipo_path(tipo) %></td>
+    <!-- <td>< %= link_to 'Mostrar eventos', :controller => 'tipos', :action => 'eventos', :id => tipo.id %></td> -->
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<p align="center"><%= link_to 'Novo Equipamento',:controller => 'tipos', :action => 'new' %>  |
+<%= link_to "Voltar", calendar_index_path %> </p>
