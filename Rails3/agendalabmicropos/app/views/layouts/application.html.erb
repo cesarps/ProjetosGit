@@ -1,0 +1,59 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+  <title>Calendar</title>
+  <%= stylesheet_link_tag "fullcalendar.css" %>
+  <%= stylesheet_link_tag "spectrum.css" %>
+  <!-- < %= stylesheet_link_tag "application.css" %> -->
+  <%= stylesheet_link_tag "estilo.css" %>
+  <%= javascript_include_tag "jquery.js" %>
+  <%= javascript_include_tag "jquery.rest.js" %>
+  <%= javascript_include_tag "rails.js" %>
+  <%= javascript_include_tag "application.js" %>
+  <%= javascript_include_tag "spectrum.js" %>
+
+  <!-- these are needed for the calendar. -->
+  <%= javascript_include_tag "jquery-ui-1.8.11.custom.min.js" %>
+  <%= javascript_include_tag "fullcalendar.js" %>
+  <%= javascript_include_tag "calendar.js" %>
+
+  <%= csrf_meta_tag %>
+
+  <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
+  <script>
+  </script>
+
+</head>
+<body>
+
+<ul class="hmenu">
+  <%= render "devise/menu/login_itens" %>
+</ul>
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+
+
+<div class="topo">
+  <div id="logo_2"><%= link_to image_tag("agenda-cnt.png") %></div>
+</div>
+
+<div class="titulo">
+  <div id="tit_sistema">AGENDAMENTO  DE LABORATÓRIOS - MICROBIOLOGIA - PÓS-GRADUAÇAO</div>
+</div>
+
+<div class="conteudo">
+  <div id="dados"><%= yield %>
+  </div>
+</div>
+
+<div class="rodape">
+  <div id="suporte">Suporte: STI  (3091-7278), desenv@icb.usp.br</div>
+  <div id="desenv">Desenvolvimento: Seção de Informática </div>
+</div>
+
+
+</body>
+</html>

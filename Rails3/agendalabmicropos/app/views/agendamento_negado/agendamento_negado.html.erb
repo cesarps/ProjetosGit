@@ -1,0 +1,59 @@
+<h1>Sua solicitação de agendamento foi negada.</h1>
+
+<p>
+  Você fez uma solicitação de agendamento, porém a sala não poderá ser utilizada nesta data e horário.
+</p>
+
+<table>
+  <tr><td>
+    <b>Título:</b>
+    <%= @event.title %>
+  </td></tr>
+
+  <tr><td>
+    <b>Início em:</b>
+    <%= @event.starts_at.to_datetime.strftime("%H:%M")  %>
+  </td></tr>
+
+  <tr><td>
+    <b>Término em:</b>
+    <%= @event.ends_at.to_datetime.strftime("%H:%M") %>
+  </td></tr>
+
+  <tr><td>
+
+    <b>Dias selecionados:</b>
+    <ul>
+      <% if @event.domingo == true %>
+          <li>Domingo</li>
+      <% end %>
+      <% if @event.segunda == true %>
+          <li>Segunda-feira</li>
+      <% end %>
+      <% if @event.terca == true %>
+          <li>Terça-feira</li>
+      <% end %>
+      <% if @event.quarta == true %>
+          <li>Quarta-feira</li>
+      <% end %>
+      <% if @event.quinta == true %>
+          <li>Quinta-feira</li>
+      <% end %>
+      <% if @event.sexta == true %>
+          <li>Sexta-feira</li>
+      <% end %>
+      <% if @event.sabado == true %>
+          <li>Sábado</li>
+      <% end %>
+    </ul>
+  </td></tr>
+
+  <tr><td>
+    <b>Descrição:</b>
+    <%= @event.description %>
+  </td></tr>
+</table>
+
+<p>
+  Por favor marque outro dia ou horário, ou entre em contato com o administrador.
+</p>

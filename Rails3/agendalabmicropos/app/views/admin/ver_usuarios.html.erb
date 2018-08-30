@@ -1,0 +1,24 @@
+<h1>Lista de usuarios:</h1>
+<table>
+
+  <tr>
+    <td>Login</td>
+    <td>Nome</td>
+    <td>Data do último acesso</td>
+    <td>Hora do último acesso</td>
+    <td></td>
+  </tr>
+
+  <% @usuario.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+ 	<td><%= user.nome_completo %></td>
+        <td><%= user.last_sign_in_at.to_datetime.strftime("%d/%m/%Y") %></td>
+        <td><%= user.last_sign_in_at.to_datetime.strftime("%H:%M:%S") %></td>
+        <td><%= link_to 'Alterar permissões', :controller => 'tipo_usuarios', :action => 'new', :id => user.id %></td>
+      </tr>
+  <% end %>
+
+</table>
+
+<p> <%= link_to "Voltar", calendar_index_path %> </p>

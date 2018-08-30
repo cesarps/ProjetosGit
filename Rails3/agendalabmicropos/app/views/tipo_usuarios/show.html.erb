@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Equipamento:</b>
+  <%= @tipo_usuario.tipo.nome %>
+</p>
+
+<p>
+  <b>Usuario:</b>
+  <%= @tipo_usuario.usuario.nome_completo %>
+</p>
+
+<%= link_to 'Voltar', :controller => 'admin', :action => 'ver_usuarios' %>

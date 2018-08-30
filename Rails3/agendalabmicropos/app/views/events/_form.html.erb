@@ -1,0 +1,94 @@
+<%= form_for(@event) do |f| %>
+    <% if @event.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@event.errors.count, "erro") %> impediu o salvamento deste registro:</h2>
+
+          <ul>
+            <% @event.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <% @u = current_usuario %>
+
+    <div class="field">
+      <%= f.label :tipo_id ,"Tipo de agendamento" %>   <br>
+      <%= f.select :tipo_id, TipoUsuario.where("usuario_id  = ? ", @u.id).map{|tu| [tu.tipo.nome,tu.tipo.id]}, include_blank: true,  data: { remote: true } %> <!-- cria o combobox com os valores do array -->
+      <span id="tipo_desc"></span>
+    </div> 
+    <br/>
+
+    <div class="field">
+      <%= f.label :title, "Título" %><br />
+      <%= f.text_field :title %>
+    </div>
+    <p>
+    <div class="field">
+      <%= f.label :regpara, "Registrar para" %><br />
+      <%= f.hidden_field :regpara, value: session[:regpara] %> <%= session[:regpara] %>
+    </div>
+    </p>
+    <p>
+    <div class="field">
+      <%= f.label :ramal, "Ramal" %> <br />
+      <%= f.hidden_field :ramal, value: session[:ramal] %> <%= session[:ramal] %>
+    </div>
+    </p>
+    <br/>
+    <div class="field">
+      <%= f.label :starts_at, "Inicia em" %><br />
+      <%= f.datetime_select :starts_at %>
+    </div>
+    <br/>
+    <div class="field">
+      <%= f.label :ends_at, "Termina em" %><br />
+      <%= f.datetime_select :ends_at  %>
+    </div>
+    <br/>
+    <div>
+      <fieldset>
+        <legend> Marque os dias de semana que ele deve acontecer</legend>
+        <%= f.check_box :domingo %> <%= f.label :domingo,"Domingo" %> <br />
+        <%= f.check_box :segunda %> <%= f.label :segunda,"Segunda" %> <br />
+        <%= f.check_box :terca %> <%= f.label :terca,"Terça" %> <br />
+        <%= f.check_box :quarta %> <%= f.label :quarta,"Quarta" %> <br />
+        <%= f.check_box :quinta %> <%= f.label :quinta,"Quinta" %> <br />
+        <%= f.check_box :sexta %> <%= f.label :sexta,"Sexta" %> <br />
+        <%= f.check_box :sabado %> <%= f.label :sabado,"Sábado" %>
+      </fieldset>
+    </div>
+    <br />
+    <div class="field">
+      <%= f.label :description, "Descrição" %><br />
+      <%= f.text_area :description %>
+    </div>
+
+    <div class="field">
+      <%= f.hidden_field :u_email, value: @u.email  %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Enviar" %>
+    </div>
+<% end %>
+
+<!--
+<script type="text/javascript">
+  $("#event_tipo_id").change(function(){
+    var tipo_id = $("#event_tipo_id option:selected").val();
+    
+    if (tipo_id != "") {
+      var endereco = "http://watson.icb.usp.br/agendamicro/tipodescricao/" + tipo_id;
+      $.ajax({
+        url: endereco
+      });
+    }
+    else {
+      $("#tipo_desc").html("");
+    }
+
+  });
+</script>
+-->

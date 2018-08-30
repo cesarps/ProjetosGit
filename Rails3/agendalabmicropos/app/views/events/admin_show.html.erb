@@ -1,0 +1,216 @@
+<% if usuario_signed_in? %>
+    <!-- busca os agendamentos e cria a variavel para ser comparada -->
+
+    <h1 id="events">Eventos do dia.</h1>
+
+    <% agendamento = Agendamento.find(:all, :order => 'hora_inicio') %>
+
+    <%  agendamento.each do |agen| %>
+
+        <!-- compara a variavel para achar os agendamentos do dia selecionado -->
+        <% if agen.data_inicio.to_datetime.strftime("%d/%m/%Y") == @event.starts_at.to_datetime.strftime("%d/%m/%Y") %>
+
+            <!-- busca no campo Events os eventos do dia selecionado e retorna para o html os valores necess�rios -->
+            <% event = Event.find(:all) %>
+            <% event.each do|ev| %>
+
+                <% if ev.id == agen.event_id %>
+                    <div id='evento'>
+                      <table class="tab_show" cellpadding="20">
+
+                        <tr class="par"><td>
+                          <b>Sala:</b>
+                          <% @tipo = Tipo.find(:all) %>
+                          <% @tipo.each do |t| %>
+                              <% if t.id == ev.tipo_id %>
+                                  <%= t.nome %>
+                              <% end %>
+                          <% end %>
+                        </td></tr>
+
+                        <tr class="impar"><td>
+                          <b>T�tulo:</b>
+                          <%= ev.title %>
+                        </td></tr>
+
+                       <tr class="par"><td>
+                          <b>Registrar para:</b>
+                          <%= ev.regpara %>
+                        </td></tr>
+
+                        <tr class="impar"><td>
+                          <b>In�cio em:</b>
+                          <%= agen.hora_inicio.to_datetime.strftime("%H:%M") %>
+                        </td></tr>
+
+                        <tr class="par"><td>
+                          <b>T�rmino em:</b>
+                          <%= agen.hora_fim.to_datetime.strftime("%H:%M") %>
+                        </td></tr>
+
+                        <tr class="impar"><td>
+
+                          <b>Dias selecionados:</b>
+                          <ul>
+                            <% if @event.domingo == true %>
+                                <li>Domingo</li>
+                            <% end %>
+                            <% if @event.segunda == true %>
+                                <li>Segunda-feira</li>
+                            <% end %>
+                            <% if @event.terca == true %>
+                                <li>Ter�a-feira</li>
+                            <% end %>
+                            <% if @event.quarta == true %>
+                                <li>Quarta-feira</li>
+                            <% end %>
+                            <% if @event.quinta == true %>
+                                <li>Quinta-feira</li>
+                            <% end %>
+                            <% if @event.sexta == true %>
+                                <li>Sexta-feira</li>
+                            <% end %>
+                            <% if @event.sabado == true %>
+                                <li>S�bado</li>
+                            <% end %>
+                          </ul>
+                        </td></tr>
+
+                        <tr class="par"><td>
+                          <b>Description:</b>
+                          <%= ev.description %>
+                        </td></tr>
+
+                        <tr class="impar">
+                          <td>
+                            <b>Confirmado pelo administrador:</b>
+                            <% if @event.pendente == true %>
+                                N�o
+                            <% elsif @event.pendente == false %>
+                                Sim
+                            <% end %>
+                          </td>
+                        </tr>
+
+
+                      </table>
+                    </div>
+                <% end %>
+            <% end %>
+        <% end %>
+    <% end %>
+
+    <div id="rodape" align="center">
+      <%= link_to 'Voltar', events_path %> |
+      <%= link_to 'ver calendario', calendar_index_path %> |
+      <%= link_to 'Novo Evento', new_event_path %>
+    </div>
+<% elsif admin_signed_in? %>
+    <!-- busca os agendamentos e cria a variavel para ser comparada -->
+
+    <h1 id="events">Eventos do dia.</h1>
+
+    <% agendamento = Agendamento.find(:all, :order => 'hora_inicio') %>
+
+    <%  agendamento.each do |agen| %>
+
+        <!-- compara a variavel para achar os agendamentos do dia selecionado -->
+        <% if agen.data_inicio.to_datetime.strftime("%d/%m/%Y") == @event.starts_at.to_datetime.strftime("%d/%m/%Y") %>
+
+            <!-- busca no campo Events os eventos do dia selecionado e retorna para o html os valores necess�rios -->
+            <% event = Event.find(:all) %>
+            <% event.each do|ev| %>
+
+                <% if ev.id == agen.event_id %>
+                    <div id='evento'>
+                      <table class="tab_show" cellpadding="20">
+
+                        <tr class="par"><td>
+                          <b>Sala:</b>
+                          <% @tipo = Tipo.find(:all) %>
+                          <% @tipo.each do |t| %>
+                              <% if t.id == ev.tipo_id %>
+                                  <%= t.nome %>
+                              <% end %>
+                          <% end %>
+                        </td></tr>
+
+                        <tr class="impar"><td>
+                          <b>T�tulo:</b>
+                          <%= ev.title %>
+                        </td></tr>
+
+                        <tr class="par"><td>
+                          <b>Registrar para:</b>
+                          <%= ev.regpara %>
+                        </td></tr>
+
+                        <tr class="impar"><td>
+                          <b>In�cio em:</b>
+                          <%= agen.hora_inicio.to_datetime.strftime("%H:%M") %>
+                        </td></tr>
+
+                        <tr class="par"><td>
+                          <b>T�rmino em:</b>
+                          <%= agen.hora_fim.to_datetime.strftime("%H:%M") %>
+                        </td></tr>
+
+                        <tr class="impar"><td>
+
+                          <b>Dias selecionados:</b>
+                          <ul>
+                            <% if @event.domingo == true %>
+                                <li>Domingo</li>
+                            <% end %>
+                            <% if @event.segunda == true %>
+                                <li>Segunda-feira</li>
+                            <% end %>
+                            <% if @event.terca == true %>
+                                <li>Ter�a-feira</li>
+                            <% end %>
+                            <% if @event.quarta == true %>
+                                <li>Quarta-feira</li>
+                            <% end %>
+                            <% if @event.quinta == true %>
+                                <li>Quinta-feira</li>
+                            <% end %>
+                            <% if @event.sexta == true %>
+                                <li>Sexta-feira</li>
+                            <% end %>
+                            <% if @event.sabado == true %>
+                                <li>S�bado</li>
+                            <% end %>
+                          </ul>
+                        </td></tr>
+
+                        <tr class="par"><td>
+                          <b>Description:</b>
+                          <%= ev.description %>
+                        </td></tr>
+
+ <!--
+                        <tr class="impar">
+                          <td>
+                            <b>Confirmado pelo administrador:</b>
+                            < % if @event.pendente == true %>
+                                N�o
+                            < % elsif @event.pendente == false %>
+                                Sim
+                            < % end %>
+                          </td>
+                        </tr>
+-->
+
+                      </table>
+                    </div>
+                <% end %>
+            <% end %>
+        <% end %>
+    <% end %>
+
+    <div id="rodape" align="center">
+      <%= link_to 'Voltar', events_path %> |
+      <%= link_to 'ver calendario', calendar_index_path %> |
+      <%= link_to 'Novo Evento', new_event_path %>
+    </div>
+<% end %>

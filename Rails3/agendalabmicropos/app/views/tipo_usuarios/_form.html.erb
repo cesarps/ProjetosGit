@@ -1,0 +1,34 @@
+<%= form_for(@tipo_usuario) do |f| %>
+    <% if @tipo_usuario.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@tipo_usuario.errors.count, "error") %> prohibited this tipo_usuario from being saved:</h2>
+
+          <ul>
+            <% @tipo_usuario.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <% @user = Usuario.find(:all) %>
+
+
+    <% @tipo = Tipo.find(:all) %>
+
+    <div class="field">
+      <%= f.label :tipo ,"Escolha um equipamento:" %>   <br>
+      <%= f.select :tipo_id, Tipo.all.collect{|tipo| [tipo.nome,tipo.id]},:include_blank => true %>
+    </div>
+    <br/><br/>
+
+    <div class="field">
+      <%= f.hidden_field :usuario_id, :value => @usuario.id %>
+
+    </div>
+
+
+    <div class="actions">
+      <%= f.submit "Conceder permissão" %>
+    </div>
+<% end %>

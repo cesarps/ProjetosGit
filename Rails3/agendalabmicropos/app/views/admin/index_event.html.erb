@@ -1,0 +1,35 @@
+<h1 id="events">Listando  eventos</h1>
+
+<% @usuario = current_usuario %>
+
+<table id="tabela_index" cellpadding="3" cellspacing="3" align="center">
+  <tr>
+    <th class="t1">Titulo</th>
+    <th class="t1">Registrado para</th>
+    <th class="t1">Início</th>
+    <th class="t1">Fim</th>
+    <th class="t1">Descrição</th>
+    <th class="t1"></th>
+    <th class="t1"></th>
+    <th class="t1"></th>
+  </tr>
+
+  <% @events.each do |ea| %>
+      <tr>
+        <td class="t1"><%= ea.title %></td>
+        <td class="t1"><%= ea.regpara  %></td>
+        <td class="t1"><%= ea.starts_at.to_datetime.strftime("%d/%m/%Y %H:%M") %></td>
+        <td class="t1"><%= ea.ends_at.to_datetime.strftime("%d/%m/%Y %H:%M") %></td>
+        <td class="t1"><%= ea.description %></td>
+        <td class="t1"><%= link_to 'Mostrar', :controller => 'events', :action => 'show_one', :id => ea.id %></td>
+        <td class="t1"><%= link_to 'Excluir', ea, method: :delete, confirm: 'Tem certeza?'  %></td>
+        <td class="t1"><%= link_to "Mostrar agendamentos", show_ags_admin_path(ea.id) %>  </td>
+
+      </tr>
+  <% end %>
+</table>
+
+<br/>
+<div id="rodape" align="center">
+  <%= link_to 'ver calendario', calendar_index_path %>
+</div>

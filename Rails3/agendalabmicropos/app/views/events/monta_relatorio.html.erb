@@ -1,0 +1,39 @@
+<% if usuario_signed_in? %>
+    <!-- busca os agendamentos e cria a variavel para ser comparada -->
+
+    <h1 id="events">Lista de Eventos do dia.</h1>
+
+    <div id='evento'>
+    <table cellpadding="5" cellspacing="5" border="2" align="center">
+
+        <tr>
+          <td><b>Data:</b></td>
+          <td><b>Sala:</b></td>
+          <td><b>In&iacute;cio em:</b></td>
+          <td><b>T&eacute;rmino em:</b></td>
+          <td><b>T&iacute;tulo:</b></td>
+          <td><b>Registrado para:</b></td>
+          <td><b>Registrado por</b></td>
+          <td><b>Descri&ccedil;&atilde;o:</b></td>
+
+        </tr>
+        <% @result.each do |r| %>
+            <tr>
+              <td><%= r.data_inicio.to_datetime.strftime("%d/%m/%Y") %></td>
+              <td><%= r.tiponome %></td>
+              <td><b><%= r.starts_at.to_datetime.strftime("%H:%M") %></b></td>
+              <td><b><%= r.ends_at.to_datetime.strftime("%H:%M") %></b></td>
+              <td><%= r.title %></td>
+              <td><%= r.regpara %></td>
+              <td> <%= r.nome_completo %> </td>
+              <td><%= r.description %></td>
+            </tr>
+        <% end %>
+    </table>
+    </div>
+    <br><br>
+    <div id="rodape" align="center">
+        <%= link_to 'ver calendario', calendar_index_path %> |
+        <%= link_to "Voltar",:controller =>'events', :action=>'ver_dia'%>
+    </div>
+<% end %>

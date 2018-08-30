@@ -1,0 +1,42 @@
+<h1 id="events">Listando  agendamentos</h1>
+
+<% @usuario = current_usuario %> <!-- descobrir de onde vem esse current_usuario para tentar buscar o administrador -->
+
+<table id="tabela_index" cellpadding="3" cellspacing="3" align="center">
+  <tr>
+    <th class="t1">Tipo</th>
+    <th class="t1">Titulo</th>
+    <th class="t1">Registrado para</th>
+    <th class="t1">Registrado por</th>
+    <th class="t1">Início</th>
+    <th class="t1">Fim</th>
+    <th class="t1">Descrição</th>
+    <th class="t1"></th>
+    <th class="t1"></th>
+  </tr>
+
+  <% for event in @event_tipo %>
+
+
+      <tr>
+        <td class="t1"><%= event.nome %></td>
+        <td class="t1"><%= event.title %></td>
+        <td class="t1"><%= event.regpara  %></td>
+       <td class="t1"><%= event.nome_completo %></td>
+        <td class="t1"><%= event.starts_at.to_datetime.strftime("%d/%m/%Y ") %> <%= event.inicio %></td>
+        <td class="t1"><%= event.ends_at.to_datetime.strftime("%d/%m/%Y ") %><%= event.fim %></td>
+        <td class="t1"><%= event.description %></td>
+        <td class="t1"><%= link_to 'Mostrar', :controller => 'events', :action => 'show_one', :id => event.id %></td>
+        <% if @usuario.email == event.u_email %> <!-- colocar alguma coisa nesse if que identifique o administrador (admin) -->
+            <td class="t1"><%= link_to 'Editar', edit_event_path(event) %></td>
+            <td class="t1"><%= link_to 'Excluir', event, method: :delete %></td>
+        <% end %>
+      </tr>
+  <% end %>
+</table>
+
+<br/>
+<div id="rodape" align="center">
+  <%= link_to 'ver calendario', calendar_index_path %> |
+  <%= link_to 'Novo Evento', new_event_path %>
+</div>

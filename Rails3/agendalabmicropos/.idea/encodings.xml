@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
+    <file url="file://$PROJECT_DIR$/app/controllers/admin_controller.rb" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/controllers/agendamentos_controller.rb" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/controllers/login_controller.rb" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/controllers/tipos_controller.rb" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/mailers/ag_pendente.rb" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/models/event.rb" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/models/tipo.rb" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/views/admin/show.html.erb" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/views/ag_pendente/email_agendamento.html.erb" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/views/calendar/_menu.html.erb" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/views/calendar/index.html.erb" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/views/devise/menu/_login_itens.html.erb" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/config/database.yml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/config/environments/development.rb" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/config/routes.rb" charset="UTF-8" />
+  </component>
+</project>

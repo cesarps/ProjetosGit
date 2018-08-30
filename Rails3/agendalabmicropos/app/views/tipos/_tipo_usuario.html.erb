@@ -1,0 +1,6 @@
+<p>
+  <% for tipo_usuario in Tipo_usuario.all(:order => "id ASC") %>
+      <%= check_box_tag "usuario[tipo_usuario_id][]", tipo_usuario.id, tipo_usuario_ids.include?(tipo_usuario.id) %>
+      <%= tipo_usuario.tipo_id %>
+  <% end %>
+</p>

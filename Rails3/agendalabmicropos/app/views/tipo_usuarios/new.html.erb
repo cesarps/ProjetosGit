@@ -1,0 +1,33 @@
+<h1><%= @usuario.email %></h1>
+
+<%= render 'form' %>
+
+<h1>Equipamentos já permitidos ao usuário:</h1>
+
+<% @t = Tipo.find(:all) %>
+
+<% @tu = TipoUsuario.find(:all) %>
+<% @tu.each do |tu| %>
+    <% if tu.usuario_id == @usuario.id %>
+        <% @t.each do |t| %>
+            <% if tu.tipo_id == t.id %>
+                <table>
+                  <tr>
+                    <th><%= t.nome %></th>
+                    <th>
+                      <%= link_to " Tirar permisão",
+                                  :controller => "tipo_usuarios",
+                                  :action => "destroy",
+                                  :id_1 => tu.id %>
+                    </th>
+                  </tr>
+                </table>
+            <% end %>
+        <% end %>
+    <% end %>
+<% end %>
+
+<br/><br/>
+
+
+<%= link_to 'Voltar', :controller => 'admin', :action => 'ver_usuarios' %>

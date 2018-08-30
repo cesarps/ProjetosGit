@@ -1,0 +1,92 @@
+html,
+
+body {
+	margin:7px;
+	font-family:"arial";
+	font-size:12px;
+	background:#ccc;
+}
+
+.topo
+	{
+	float:left;
+    background:#1d7676;
+	border-style:solid;
+	border-width:1px;
+	border-color:#000;
+	width:100%;
+	text-align:center;
+}
+
+.barra									/* AGENDAMENTO */
+	{
+	float:left;
+	width: 100%;
+	background: url(barra.png) left top repeat-x;
+	}
+
+#barra_01
+	{
+	margin-top:5px;
+	color:#fff;
+	font-size:22px;
+	font-weight:bold;
+    text-align:center;
+	width:100%;
+	}
+
+.titulo
+	{
+	float:left;
+	width: 100%;
+	margin-top:5px;
+	color:#fff;
+	background:#2F4F4F;
+	font-size:18px;
+	font-weight:bold;
+    text-align:center;
+	width:100%;
+	}
+
+.conteudo {
+	background: transparent url('/images/body-bg.png') repeat top center;
+	margin-bottom:1%;
+	float:left;
+	height: 100%;
+	width:100%;
+   }
+
+#dados
+{
+	margin-top:1%;
+	margin-bottom:100%;
+	}
+
+.rodape {
+	padding:5px;
+    position: fixed;
+    bottom: 0px;
+    background:#1d7676;
+	border-style: solid;
+	border-width:1px;
+	border-color:#000;
+	color:#fff;
+	width:97.2%;
+}
+
+#suporte
+	{
+	float:left;
+	margin-left: 15px;
+	}
+
+#desenv
+	{
+	float:right;
+	margin-right: 15px;
+	}
+
+.menuhor li {
+    list-style: none;
+    display: inline;
+}
