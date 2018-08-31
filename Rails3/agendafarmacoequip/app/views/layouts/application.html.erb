@@ -3,13 +3,8 @@
 <html>
 <head>
   <title>Calendar</title>
-  <%= stylesheet_link_tag "fullcalendar.css" %>
-  <%= stylesheet_link_tag "spectrum.css" %>
-  <%= stylesheet_link_tag "bootstrap.css" %>
 
-  <!-- < %= stylesheet_link_tag "application.css" %> -->
-  <%= stylesheet_link_tag "estilo.css" %>
-  <%= javascript_include_tag "jquery.js" %>
+  <%== javascript_include_tag "jquery.js" %>
   <%= javascript_include_tag "jquery.rest.js" %>
   <%= javascript_include_tag "rails.js" %>
   <%= javascript_include_tag "application.js" %>
@@ -21,11 +16,19 @@
   <%= javascript_include_tag "fullcalendar.js" %>
   <%= javascript_include_tag "calendar.js" %>
 
+
+  <%= stylesheet_link_tag "fullcalendar.css" %>
+  <%= stylesheet_link_tag "spectrum.css" %>
+  <%= stylesheet_link_tag "bootstrap.css" %>
+  <%= stylesheet_link_tag "estilo.css" %>
+
+  <!-- < %= stylesheet_link_tag "application.css" %> -->
+
+
   <%= csrf_meta_tag %>
 
   <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
-  <script>
-  </script>
+
 
 </head>
 <body>

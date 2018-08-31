@@ -1,5 +1,3 @@
-alert("teste");
-
 $(document).ready(function() {
 
 	var date = new Date();

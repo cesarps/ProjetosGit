@@ -66,21 +66,13 @@
     </div>
 <% end %>
 
-<!--
-<script type="text/javascript">
-  $("#event_tipo_id").change(function(){
-    var tipo_id = $("#event_tipo_id option:selected").val();
-    
-    if (tipo_id != "") {
-      var endereco = "http://watson.icb.usp.br/agendamicro/tipodescricao/" + tipo_id;
-      $.ajax({
-        url: endereco
-      });
-    }
-    else {
-      $("#tipo_desc").html("");
-    }
 
+<script type="text/javascript">
+  $("#event_tipo_id").change(function() {
+      var tipo_id = $("#event_tipo_id option:selected").val();
+      if (tipo_id != "") {
+          alert(tipo_id);
+      }
   });
 </script>
--->
+
