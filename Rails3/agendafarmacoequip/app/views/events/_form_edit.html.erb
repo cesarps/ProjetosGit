@@ -15,13 +15,9 @@
 
     <div class="field">
       <%= f.label :tipo_id ,"Tipo de agendamento" %>   <br>
-      <%= f.hidden_field :tipo_id, value: @tipo_escolhido.id %> <%= @tipo_escolhido.nome %>
-      <div class="jumbotron">
-        <h4> <%= @tipo_escolhido.observacao %> </h4>
-      </div>
-      <a href="javascript:history.back()"> Escolher outro equipamento </a>
-
-     </div>
+      <%= f.select :tipo_id, TipoUsuario.where("usuario_id  = ? ", @u.id).map{|tu| [tu.tipo.nome,tu.tipo.id]}, include_blank: true,  data: { remote: true } %> <!-- cria o combobox com os valores do array -->
+      <span id="tipo_desc"></span>
+    </div>
 
     <br/>
 

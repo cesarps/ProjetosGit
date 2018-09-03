@@ -138,6 +138,9 @@ class EventsController < ApplicationController
     @event = Event.new
     @tipos = Tipo.all
     @tot_tipos = @tipos.count
+    @tipo_id = params[:tipo_id]
+    @tipo_escolhido = Tipo.find(@tipo_id)
+
     @user = current_usuario
 
     respond_to do |format|
