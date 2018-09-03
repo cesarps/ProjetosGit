@@ -2,7 +2,8 @@
     <div>
       <ul class="menuhor" align="center">
         <li><%= link_to "Home", calendar_index_path %></li>
-        <li><%= link_to "Novo evento", new_event_path %></li>
+        <!-- <li>< %= link_to "Novo evento", new_event_path %></li> -->
+        <%= link_to "Novo evento", pre_form_path %>
         <li><%= link_to "Lista de eventos", index_event_path %> </li>
         <li><%= link_to "Eventos do dia",ver_dia_path %> </li>
       </ul>

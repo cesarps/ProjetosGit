@@ -1,0 +1,14 @@
+<%= form_tag(new_event_path, method: "get")  do  %>
+
+
+    <% @u = current_usuario %>
+
+    <div class="field">
+      <%= label_tag :tipo_id ,"Tipo de agendamento" %>   <br>
+      <%= select_tag :tipo_id, options_for_select(TipoUsuario.where("usuario_id  = ? ", @u.id).map{|tu| [tu.tipo.nome,tu.tipo.id]}), include_blank: true,  data: { remote: true } %> <!-- cria o combobox com os valores do array -->
+      <span id="tipo_desc"></span>
+    </div>
+    <%= submit_tag("Enviar") %>
+
+
+<% end %>

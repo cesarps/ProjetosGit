@@ -129,6 +129,11 @@ class EventsController < ApplicationController
 
   # GET /events/new
   # GET /events/new.xml
+
+  def pre_form
+
+  end
+
   def new
     @event = Event.new
     @tipos = Tipo.all

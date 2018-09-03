@@ -1,4 +1,4 @@
-<% if usuario_signed_in? %>
+<!-- < % if usuario_signed_in? %> -->
     <h1>Novo  Agendamento</h1>
 
     <div id="instrucoes">
@@ -12,7 +12,13 @@
     <%= render 'form' %>
     <%= link_to 'Voltar', calendar_index_path %>
 
-<% elsif admin_signed_in? %>
+
+
+
+
+
+<!--
+< % elsif admin_signed_in? %>
     <h1>Novo  Agendamento</h1>
 
     <div id="instrucoes">
@@ -23,6 +29,8 @@
         Se o evento for no mesmo dia, não é necessário marcar os dias de semana.</p>
     </div>
 
-    <%= render 'form' %>
-     <%= link_to 'Voltar', calendar_index_path %>
-<% end %>
+    < %= render 'form' %>
+     < %= link_to 'Voltar', calendar_index_path %>
+< % end %>
+
+-->
