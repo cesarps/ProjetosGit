@@ -30,8 +30,10 @@ Calendar::Application.routes.draw do
   match 'newindex_admin' => 'admin#newindex'
   match 'index_event' => 'events#index_event'
   match 'index_event_admin' => 'admin#index_event'
+  match 'pre_form' => 'events#pre_form'
   get 'show_ags/:id' => 'events#show_ags', as: 'show_ags'
   get 'show_ags_admin/:id' => 'admin#show_ags', as: 'show_ags_admin'
+
 
   get 'tipodescricao/:tipo_id' => 'events#tipodescricao', :as => 'tipodescricao'
 
