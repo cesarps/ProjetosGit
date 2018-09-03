@@ -131,6 +131,8 @@ class EventsController < ApplicationController
   # GET /events/new.xml
   def new
     @event = Event.new
+    @tipos = Tipo.all
+    @tot_tipos = @tipos.count
     @user = current_usuario
 
     respond_to do |format|
