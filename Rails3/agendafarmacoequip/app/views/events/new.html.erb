@@ -1,14 +1,7 @@
 <!-- < % if usuario_signed_in? %> -->
     <h1>Novo  Agendamento</h1>
 
-    <div id="instrucoes">
-      <h2> Instruções </h2>
-
-      <p> Caso seja necessário marcar um intervalo com mais de um dia, marque os dias de semana que você precisa utilizar.<br>
-        Mesmo que o intervalo seja de apenas um dia (hoje e amanhã, por exemplo), marque os dois dias correspondentes. <br>
-        Se o evento for no mesmo dia, não é necessário marcar os dias de semana.</p>
-    </div>
-
+    <%= render 'instrucoes' %>
     <%= render 'form' %>
     <%= link_to 'Voltar', calendar_index_path %>
 

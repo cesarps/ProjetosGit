@@ -16,8 +16,8 @@
     <div class="field">
       <%= f.label :tipo_id ,"Tipo de agendamento" %>   <br>
       <%= f.hidden_field :tipo_id, value: @tipo_escolhido.id %> <%= @tipo_escolhido.nome %>
-      <div class="jumbotron">
-        <h4> <%= @tipo_escolhido.observacao %> </h4>
+      <div class="jumbotron jumbotron-fluid">
+        <p> <%= @tipo_escolhido.observacao %> </p>
       </div>
       <a href="javascript:history.back()"> Escolher outro equipamento </a>
 
