@@ -1,0 +1,7 @@
+<h1>Editando Album</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Mostrar', @album, class: 'btn btn-primary active' %> |
+<%= link_to 'Voltar', albuns_path, class: 'btn btn-default' %>
+<%= link_to 'Escolher capa desse album', escolhe_capa_path(@album), class: 'btn btn-default' %>

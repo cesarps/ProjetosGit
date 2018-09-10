@@ -1,0 +1,7 @@
+<p>
+  <strong>Nome:</strong>
+  <%= @categoria.nome %>
+</p>
+
+<%= link_to 'Editar', edit_categoria_path(@categoria) , class: 'btn btn-primary active' %>  |
+<%= link_to 'Voltar', categorias_path, class: 'btn btn-default' %>

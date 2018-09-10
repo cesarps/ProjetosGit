@@ -1,0 +1,72 @@
+<p>
+  <strong>Data evento:</strong>
+  <%= @album.data_evento.strftime("%d/%m/%Y") %>
+</p>
+
+<p>
+  <strong>Nome evento assunto:</strong>
+  <%= @album.nome_evento_assunto %>
+</p>
+
+<p>
+  <strong>Departamento:</strong>
+  <%= @album.departamento.nome %>
+</p>
+
+<p>
+  <strong>Nome fotografo:</strong>
+  <%= @album.nome_fotografo %>
+</p>
+
+<p>
+  <strong>Endereco:</strong>
+  <%= @album.endereco %>
+</p>
+
+<!--
+<p>
+  <strong>Categoria:</strong>
+  < %= @album.categoria.nome %>
+</p>
+-->
+
+
+<% if @album.fotos.any? %>
+    <div class="panel panel-default">
+      <div class="panel panel-heading"> Fotos </div>
+      <div class="row">
+        <% @album.fotos.each do |af| %>
+                <div class="col-lg-4">
+                  <div class="img-rounded">
+                    <% if af.id == @album.capa %>
+                        &nbsp
+                        <i class="glyphicon glyphicon-asterisk"></i>
+                    <% end %>
+                    <%= link_to( image_tag(af.arquivo_url(:thumb)),af.arquivo_url, target: "_blank") if af.present? %> <br>
+                    <%= af.legenda %> / <%= af.categoria.nome %>
+                    <hr>
+                  </div>
+                </div>
+        <% end %>
+      </div>
+    </div>
+<% end %>
+<p> (*) Capa</p>
+
+<% if @album.tags.any? %>
+    <div  class="panel panel-default">
+      <div class="panel panel-heading"> Tags </div>
+      <div class="row">
+     <% @album.tags.each do |at| %>
+          <div class="col-lg-4"><h4> <%= at.nome %> </h4> </div>
+     <% end %>
+      </div>
+        </div>
+    </div>
+<% end %>
+
+<%= link_to 'Editar', edit_album_path(@album), class: 'btn btn-primary active' %> |
+<%= link_to 'Voltar', albuns_path, class: 'btn btn-default'  %>
+<% if @album.capa.nil? %>
+    <%= link_to 'Escolher a capa desse album agora ', escolhe_capa_path(@album), class: 'btn btn-default' %>
+<% end %>

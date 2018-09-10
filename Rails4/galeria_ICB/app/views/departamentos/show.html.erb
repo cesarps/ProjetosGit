@@ -1,0 +1,7 @@
+<p>
+  <strong>Nome:</strong>
+  <%= @departamento.nome %>
+</p>
+
+<%= link_to 'Editar', edit_departamento_path(@departamento), class: 'btn btn-primary active' %> |
+<%= link_to 'Voltar', departamentos_path, class: 'btn btn-default' %>

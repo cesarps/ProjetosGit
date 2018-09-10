@@ -1,0 +1,16 @@
+<% if @album.fotos.any? %>
+    <%= form_tag :definir_capa, method: :get do %>
+    <div class="panel panel-default">
+      <div class="panel panel-heading"> Escolha a capa do seu álbum </div>
+      <div class="row">
+        <% @album.fotos.each do |af| %>
+            <div class="col-lg-4">
+              <div class="img-rounded"> <%= image_tag(af.arquivo_url(:thumb)) if af.present? %> &nbsp <%= radio_button_tag :capa, af.id %> <hr> </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+        <%= submit_tag "Enviar",  class: "btn btn-primary active" %>
+        <%= link_to 'Voltar', @album, class: 'btn btn-default active' %>
+    <% end %>
+<% end %>

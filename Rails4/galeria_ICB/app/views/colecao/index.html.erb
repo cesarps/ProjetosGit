@@ -1,0 +1,40 @@
+<h1> Galerias de fotos</h1>
+
+
+
+<div class="row">
+  <div class="col-md-8">
+    <div class="panel panel-default">
+      <div class="row">
+        <% @album.each do |al| %>
+            <% @capa = al.capa %>
+            <%   @foto = Foto.find(@capa)  unless @capa.nil? %>
+            <div class="col-md-3">
+              <%= link_to(image_tag(@foto.arquivo_url(:thumb)), mostrar_path(al)) %>
+              <p><%= al.nome_evento_assunto %> (<%= al.fotos.count %> fotos)</p>
+            </div>
+        <% end %>
+      </div>
+    </div>
+    <%= paginate @album %>
+  </div>
+
+  <div class="col-md-4">
+    <div id="busca">
+      <%= form_tag :pesquisa, method: :get do %>
+          <p>Eventos de <%= date_field_tag :data_inicio, nil %> até <%= date_field_tag :data_fim, nil  %> </p>
+          <p> Nome do evento: <%= text_field_tag :nome_evento,nil,  size: 40 %> </p>
+          <p> Departamento: <%= select_tag :departamento_id, options_from_collection_for_select(Departamento.all,:id,:nome), :include_blank => true  %> </p>
+          <%= submit_tag "Enviar" %>
+      <% end %>
+    </div>
+
+    <h2> Tags</h2>
+    <h4>
+      <% @tags.each do |t| %>
+          <%= link_to t.nome, busca_tag_path(nome: t.nome)  %>
+      <% end %>
+    </h4>
+  </div>
+</div>
+

@@ -1,0 +1,37 @@
+<h1> <%= @album.nome_evento_assunto %> </h1>
+
+
+<div class="jumbotron">
+  <p> Data do evento: <%= @album.data_evento.strftime("%d/%m/%Y") %></p>
+  <p> Local do evento: <%= @album.endereco %></p>
+  <p> Fotógrafo:  <%= @album.nome_fotografo %> </p>
+</div>
+
+<div id="links">
+  <% if @album.fotos.any? %>
+      <div class="row">
+      <!-- < % @album.fotos.each do |af| %> -->
+        <% @fotos.each do |af| %>
+          <div class="col-md-3">
+            <%= link_to( image_tag(af.arquivo_url(:thumb)),af.arquivo_url, :data => {:gallery => 'data-gallery'}, title: af.legenda )  if af.present? %> <br>
+            <%= af.legenda %> / <%= af.categoria.nome %>
+            <hr>
+          </div>
+      <% end %>
+      </div>
+  <% end %>
+</div>
+
+
+
+<% if @album.tags.any? %>
+    <div  class="panel panel-default">
+      <div class="panel panel-heading"> Tags </div>
+      <div class="row">
+        <% @album.tags.each do |at| %>
+            <div class="col-lg-4"> <h4> <%= at.nome %> </h4> </div>
+        <% end %>
+      </div>
+    </div>
+<% end %>
+<%= link_to "Voltar", colecao_index_path, class: "btn btn-primary active" %>

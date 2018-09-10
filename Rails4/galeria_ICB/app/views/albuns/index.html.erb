@@ -1,0 +1,66 @@
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#albuns').dataTable ({
+            "iDisplayLength": 10, <!-- 10 registros por pagina -->
+            "bPaginate": true,    <!-- Paginação  -->
+            "sPaginationType":"full_numbers",   <!-- Opção de mostrar numeros por pagina (1,2,3...) -->
+            "bJQueryUI":true,
+            "bLengthChange":false, <!-- Tira a opção de escolher quantos registros devem aoarecer por paagina -->
+            "ordering":     false,  <!-- Tira os links de ordenação de cada coluna -->
+            "aaSorting":    [],  <!-- Determina que a ordenação nao seguira nenhuma coluna (por estar vazio). -->
+            "oLanguage": { <!-- Inicia a tradução dos itens da tela -->
+                "sInfo":              "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                "sInfoFiltered":      "Filtrado de _MAX_ registros no total",
+                "sInfoEmpty":         "Sem resultados",
+                "sZeroRecords":       "Sem resultados",
+                "sSearch":            "Buscar",
+                "oPaginate": {
+                    "sFirst":         "Primeiro",
+                    "sPrevious":      "Anterior",
+                    "sNext":          "Próximo",
+                    "sLast":          "Ultimo"
+                }
+            }
+        })
+    })
+</script>
+
+
+<h1>Albuns</h1>
+
+<table class="table table-bordered display" id="albuns">
+  <thead>
+    <tr>
+      <th class="text-center"> Data</th>
+      <th class="text-center"> Evento/Assunto</th>
+      <!--<th class="text-center"> Categoria </th> -->
+      <th class="text-center"> Tags</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @albuns.each do |album| %>
+      <tr>
+        <td><%= album.data_evento.strftime("%d/%m/%Y") %></td>
+        <td><%= album.nome_evento_assunto %></td>
+        <!-- <td>< %= album.categoria.nome %></td> -->
+        <td>
+          <% @tags = Tag.where("album_id = ?", album.id) %>
+          <% @tags.each do |tag| %>
+            <%= tag.nome %> ,
+          <% end %>
+        </td>
+        <td class="text-center"><%= link_to 'Mostrar', album, class: 'btn btn-default' %></td>
+        <td class="text-center"><%= link_to 'Editar', edit_album_path(album), class: 'btn btn-primary active' %></td>
+        <td class="text-center"><%= link_to 'Apagar', album, method: :delete, data: { confirm: 'Tem certeza?' }, class: 'btn btn-danger active' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Novo Album', new_album_path, class:'btn btn-primary active' %>
