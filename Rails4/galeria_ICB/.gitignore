@@ -15,3 +15,5 @@
 # ignore database.yml
 /config/database.yml
 
+# Ignore .idea
+/.idea
