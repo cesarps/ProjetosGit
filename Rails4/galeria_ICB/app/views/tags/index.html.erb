@@ -1,0 +1,8 @@
+<h2> Tags</h2>
+<h4>
+  <% @tags.each do |t| %>
+      <%= link_to t.nome, busca_tag_path(nome: t.nome)  %>
+  <% end %>
+</h4>
+
+<%= link_to "Voltar", colecao_index_path, class: 'btn btn-primary active' %>
