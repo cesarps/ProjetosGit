@@ -21,10 +21,12 @@
 
   <div class="col-md-4">
     <div id="busca">
+
       <%= form_tag :pesquisa, method: :get do %>
           <p>Eventos de <%= date_field_tag :data_inicio, nil %> até <%= date_field_tag :data_fim, nil  %> </p>
           <p> Nome do evento: <%= text_field_tag :nome_evento,nil,  size: 40 %> </p>
           <p> Departamento: <%= select_tag :departamento_id, options_from_collection_for_select(Departamento.all,:id,:nome), :include_blank => true  %> </p>
+          <p> Legenda: <%= text_field_tag :legenda, nil, size: 40 %> </p>
           <%= submit_tag "Enviar" %>
       <% end %>
     </div>
