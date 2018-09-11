@@ -16,4 +16,8 @@
 /config/database.yml
 
 # Ignore .idea
-/.idea
+/.idea/workplace.xml
+
+# Ignore uplodads
+/public/uploads
+
