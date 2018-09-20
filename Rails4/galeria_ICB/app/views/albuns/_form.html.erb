@@ -42,7 +42,7 @@
     <div  class="panel panel-default">
       <div class="panel panel-heading"> Fotos </div>
       <%= f.fields_for :fotos do |fot|  %>
-          <%= render 'foto_fields', f:fot %>
+           <%= render 'foto_fields', f:fot %>
       <% end %>
       <p><%= link_to_add_association '+', f, :fotos,  class: "btn btn-primary active" %> </p>
 

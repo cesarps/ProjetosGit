@@ -2,6 +2,7 @@ class AlbunsController < ApplicationController
   before_filter 'check_logged'
   before_action :set_album, only: [:show, :edit, :update, :destroy, :escolher_capa]
 
+
   # GET /albuns
   # GET /albuns.json
 
@@ -34,15 +35,15 @@ class AlbunsController < ApplicationController
   # GET /albuns/new
   def new
     @album = Album.new
-    @album.tags.build if @album.tags.empty?
-    @album.fotos.build if @album.fotos.empty?
+    @tag = @album.tags.build if @album.tags.empty?
+    @foto = @album.fotos.build #if @album.fotos.empty?
 
   end
 
   # GET /albuns/1/edit
   def edit
     @album.tags.build if @album.tags.empty?
-    @album.fotos.build if @album.fotos.empty?
+    @album.fotos.build  if @album.fotos.empty?
   end
 
   # POST /albuns
@@ -54,12 +55,14 @@ class AlbunsController < ApplicationController
 
     respond_to do |format|
       if @album.save
+        repete_legenda(@album.id)
         format.html { redirect_to @album, notice: 'Album criado com sucesso.' }
         format.json { render :show, status: :created, location: @album }
       else
         format.html { render :new }
         format.json { render json: @album.errors, status: :unprocessable_entity }
       end
+
     end
   end
 
@@ -71,6 +74,7 @@ class AlbunsController < ApplicationController
     respond_to do |format|
       if @album.update(album_params)
         @capa = @album.capa
+        repete_legenda(@album.id)
         format.html { redirect_to @album, notice: 'Album atualizado com sucesso .' }
         format.json { render :show, status: :ok, location: @album }
       else
@@ -90,6 +94,23 @@ class AlbunsController < ApplicationController
     end
   end
 
+
+  def repete_legenda(id)
+    @album = Album.find(id)
+    leg_ant = ""
+    @album.fotos.each do |f|
+      if f.legenda != ""
+        leg_ant = f.legenda
+      end
+      if f.legenda == ""
+        f.legenda = leg_ant
+        f.save
+      end
+
+    end
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_album
@@ -98,6 +119,6 @@ class AlbunsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def album_params
-      params.require(:album).permit(:data_evento, :nome_evento_assunto, :departamento_id, :nome_fotografo, :endereco, :categoria_id, :capa,  tags_attributes:[:id,:nome, :_destroy], fotos_attributes:[:id,:album_id, :legenda, :categoria_id, :arquivo, :arquivo_cache, :_destroy])
+      params.require(:album).permit(:data_evento, :nome_evento_assunto, :departamento_id, :nome_fotografo, :endereco, :categoria_id, :capa,  tags_attributes:[:id,:nome, :_destroy], fotos_attributes:[:id,:album_id, :legenda, :categoria_id, :arquivo, :arquivo_cache,:_destroy])
     end
 end

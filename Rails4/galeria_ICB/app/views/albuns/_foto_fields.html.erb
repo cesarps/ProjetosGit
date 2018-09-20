@@ -2,10 +2,7 @@
   <div class="col-md-8">
 
     <div class="input-group">
-
-
-
-      <span class="input-group-addon">
+     <span class="input-group-addon">
         <%= f.label "Apagar" %>
         <% if f.object.id == @album.capa %>
             <%= f.check_box :_destroy, disabled: true %>
@@ -17,9 +14,10 @@
       <table>
         <tr>
           <td> <%= f.text_field :arquivo_identifier, style: 'width: 450px', class: 'form-control', readonly: true %></td>
-          <td> <%= f.file_field :arquivo %> </td>
+          <!-- <td> < %= f.file_field :arquivo, multiple:true, name: "fotos[arquivo][]" %> </td> -->
+          <td>  <%= f.file_field :arquivo %> </td>
           <td> <%= f.text_field :legenda, size: 50  %> </td>
-          <td> <%= f.select :categoria_id, options_from_collection_for_select(Categoria.all, :id, :nome, selected: f.object.categoria_id), include_blank: true  %> </td>
+          <td> <%= f.hidden_field :categoria_id, value: 2 %> </td>
         </tr>
       </table>
    </div>
