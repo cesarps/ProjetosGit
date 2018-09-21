@@ -35,8 +35,8 @@ class AlbunsController < ApplicationController
   # GET /albuns/new
   def new
     @album = Album.new
-    @tag = @album.tags.build if @album.tags.empty?
-    @foto = @album.fotos.build #if @album.fotos.empty?
+    @album.tags.build if @album.tags.empty?
+    @album.fotos.build  if @album.fotos.empty?
 
   end
 
@@ -119,6 +119,6 @@ class AlbunsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def album_params
-      params.require(:album).permit(:data_evento, :nome_evento_assunto, :departamento_id, :nome_fotografo, :endereco, :categoria_id, :capa,  tags_attributes:[:id,:nome, :_destroy], fotos_attributes:[:id,:album_id, :legenda, :categoria_id, :arquivo, :arquivo_cache,:_destroy])
+      params.require(:album).permit(:data_evento, :nome_evento_assunto, :departamento_id, :nome_fotografo, :endereco, :categoria_id, :capa,  tags_attributes:[:id,:nome, :_destroy], fotos_attributes:[:id,:album_id, :legenda, :categoria_id,:arquivo, :arquivo_cache,:_destroy])
     end
 end
