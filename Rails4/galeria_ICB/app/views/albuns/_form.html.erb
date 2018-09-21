@@ -31,22 +31,31 @@
     <%= f.label :endereco, "Endereço do Evento" %><br>
     <%= f.text_area :endereco, class: 'form-control' %>
   </div>
+
 <!--
-  <div class="form-group">
-    < %= f.label :categoria_id, "Categoria" %><br>
-    < %= f.select :categoria_id, options_from_collection_for_select(Categoria.all, :id, :nome, selected: f.object.categoria_id), include_blank: true %>
-  </div>
--->
-
-
     <div  class="panel panel-default">
       <div class="panel panel-heading"> Fotos </div>
-      <%= f.fields_for :fotos do |fot|  %>
-           <%= render 'foto_fields', f:fot %>
-      <% end %>
-      <p><%= link_to_add_association '+', f, :fotos,  class: "btn btn-primary active" %> </p>
+      < %= f.fields_for :fotos do |fot|  %>
+           < %= render 'foto_fields', f:fot %>
+      < % end %>
+      <p>< %= link_to_add_association '+', f, :fotos,  class: "btn btn-primary active" %> </p>
 
     </div>
+-->
+
+    <div class="panel panel-default">
+      <div class="panel panel-heading"> Fotos</div>
+      <%= f.fields_for :fotos do |fot| %>
+        <div class="field">
+          <%= fot.label :foto %>
+          <%= fot.file_field :arquivo, multiple: true, name: "fotos[arquivo][]" %>
+        </div>
+      <% end %>
+    </div>
+
+
+
+
 
     <div  class="panel panel-default">
       <div class="panel panel-heading"> Tags </div>

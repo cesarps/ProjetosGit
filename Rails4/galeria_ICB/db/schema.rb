@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180919181353) do
+ActiveRecord::Schema.define(version: 20180921184414) do
 
   create_table "albuns", force: :cascade do |t|
     t.date     "data_evento"
@@ -38,12 +38,10 @@ ActiveRecord::Schema.define(version: 20180919181353) do
   end
 
   create_table "fotos", force: :cascade do |t|
-    t.integer  "album_id",     limit: 4
-    t.string   "arquivo",      limit: 255
-    t.string   "legenda",      limit: 255
-    t.integer  "categoria_id", limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.integer  "album_id",   limit: 4
+    t.string   "arquivo",    limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "tags", force: :cascade do |t|

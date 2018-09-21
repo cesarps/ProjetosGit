@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Album:</strong>
+  <%= @foto.album_id %>
+</p>
+
+<p>
+  <strong>Arquivo:</strong>
+  <%= @foto.arquivo %>
+</p>
+
+<%= link_to 'Edit', edit_foto_path(@foto) %> |
+<%= link_to 'Back', fotos_path %>

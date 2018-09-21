@@ -6,6 +6,9 @@ class AlbunsController < ApplicationController
   # GET /albuns
   # GET /albuns.json
 
+
+=begin
+
   def escolher_capa
     set_album
   end
@@ -22,6 +25,9 @@ class AlbunsController < ApplicationController
     end
   end
 
+=end
+
+
   def index
     @albuns = Album.all.order("data_evento desc")
   end
@@ -29,14 +35,14 @@ class AlbunsController < ApplicationController
   # GET /albuns/1
   # GET /albuns/1.json
   def show
-
+    @fotos = @album.fotos.all
   end
 
   # GET /albuns/new
   def new
     @album = Album.new
-    @album.tags.build if @album.tags.empty?
-    @album.fotos.build  if @album.fotos.empty?
+    @tag = @album.tags.build if @album.tags.empty?
+    @foto = @album.fotos.build  if @album.fotos.empty?
 
   end
 
@@ -55,7 +61,10 @@ class AlbunsController < ApplicationController
 
     respond_to do |format|
       if @album.save
-        repete_legenda(@album.id)
+        params[:fotos]['arquivo'].each do |a|
+          @foto = @album.fotos.create!(:arquivo => a, :album_id => @album.id)
+        end
+       # repete_legenda(@album.id)
         format.html { redirect_to @album, notice: 'Album criado com sucesso.' }
         format.json { render :show, status: :created, location: @album }
       else
@@ -73,8 +82,8 @@ class AlbunsController < ApplicationController
     #params[:album][:fotos_attributes][:default_index][:default] = true
     respond_to do |format|
       if @album.update(album_params)
-        @capa = @album.capa
-        repete_legenda(@album.id)
+       # @capa = @album.capa
+       # repete_legenda(@album.id)
         format.html { redirect_to @album, notice: 'Album atualizado com sucesso .' }
         format.json { render :show, status: :ok, location: @album }
       else
@@ -94,7 +103,7 @@ class AlbunsController < ApplicationController
     end
   end
 
-
+=begin
   def repete_legenda(id)
     @album = Album.find(id)
     leg_ant = ""
@@ -106,9 +115,9 @@ class AlbunsController < ApplicationController
         f.legenda = leg_ant
         f.save
       end
-
     end
   end
+=end
 
 
   private
@@ -119,6 +128,6 @@ class AlbunsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def album_params
-      params.require(:album).permit(:data_evento, :nome_evento_assunto, :departamento_id, :nome_fotografo, :endereco, :categoria_id, :capa,  tags_attributes:[:id,:nome, :_destroy], fotos_attributes:[:id,:album_id, :legenda, :categoria_id,:arquivo, :arquivo_cache,:_destroy])
+      params.require(:album).permit(:data_evento, :nome_evento_assunto, :departamento_id, :nome_fotografo, :endereco, :categoria_id, :capa,  tags_attributes:[:id,:nome, :_destroy], fotos_attributes:[:id, :album_id, :arquivo])
     end
 end

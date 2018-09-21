@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :fotos
  # get 'tags/index'
 
 
@@ -23,7 +24,8 @@ Rails.application.routes.draw do
 
 
   # You can have the root of your site routed with "root"
-  root 'colecao#index'
+  #root 'colecao#index'
+  root 'albuns#index'
 
 
   # Example of regular route:

@@ -31,27 +31,39 @@
 -->
 
 
-<% if @album.fotos.any? %>
+<!--
+< % if @album.fotos.any? %>
     <div class="panel panel-default">
       <div class="panel panel-heading"> Fotos </div>
       <div class="row">
-        <% @album.fotos.each do |af| %>
+        < % @album.fotos.each do |af| %>
                 <div class="col-lg-4">
                   <div class="img-rounded">
-                    <% if af.id == @album.capa %>
+                    < % if af.id == @album.capa %>
                         &nbsp
                         <i class="glyphicon glyphicon-asterisk"></i>
-                    <% end %>
-                    <%= link_to( image_tag(af.arquivo_url(:thumb)),af.arquivo_url, target: "_blank") if af.present? %> <br>
-                    <%= af.legenda %> /  <%= af.arquivo_identifier %> / <%= af.categoria.nome %>
+                    < % end %>
+                    < %= link_to( image_tag(af.arquivo_url(:thumb)),af.arquivo_url, target: "_blank") if af.present? %> <br>
+                    < %= af.legenda %> /  < %= af.arquivo_identifier %> / < %= af.categoria.nome %>
                     <hr>
                   </div>
                 </div>
-        <% end %>
+        < % end %>
       </div>
     </div>
-<% end %>
+< % end %>
 <p> (*) Capa</p>
+
+-->
+
+<% if @album.fotos.any? %>
+    <% @album.fotos.each do |af| %>
+        <%= image_tag(af.arquivo_url) if af.present? %>
+    <% end %>
+<% end %>
+
+
+
 
 <% if @album.tags.any? %>
     <div  class="panel panel-default">
