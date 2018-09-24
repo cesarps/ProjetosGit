@@ -10,11 +10,10 @@
 <div id="links">
   <% if @album.fotos.any? %>
       <div class="row">
-      <!-- < % @album.fotos.each do |af| %> -->
         <% @fotos.each do |af| %>
           <div class="col-md-3">
-            <%= link_to( image_tag(af.arquivo_url(:thumb)),af.arquivo_url, :data => {:gallery => 'data-gallery'}, title: af.legenda )  if af.present? %> <br>
-            <%= af.legenda %> / <%= af.categoria.nome %>
+            <!--< %= link_to( image_tag(af.arquivo_url, size: "150x150"),af.arquivo_url), :data => {:gallery => 'data-gallery'}, title: "teste" )  if af.present? %> <br>  title: af.legenda -->
+            <%= link_to(image_tag(af.arquivo_url,size: "150x150"), af.arquivo_url, :data => {:gallery => 'data-gallery'}, title: 'teste' ) if af.present? %>
             <hr>
           </div>
       <% end %>

@@ -52,7 +52,7 @@
       </div>
     </div>
 < % end %>
-<p> (*) Capa</p>
+
 
 -->
 
@@ -63,6 +63,10 @@
     <% @album.fotos.each do |af| %>
           <div class="col-lg-4">
           <div class="img-rounded">
+            <% if af.id == @album.capa %>
+                &nbsp
+                <i class="glyphicon glyphicon-asterisk"></i>
+            <% end %>
         <%= link_to(image_tag(af.arquivo_url,size: "200x200"), af.arquivo_url,  target: '_blank') if af.present? %>
             <hr>
           </div>
@@ -70,10 +74,9 @@
     <% end %>
     </div>
     </div>
-
 <% end %>
 
-
+<p> (*) Capa</p>
 
 
 <% if @album.tags.any? %>

@@ -8,7 +8,7 @@ class ColecaoController < ApplicationController
 
   def mostrar
     @album = Album.find(params[:id])
-    @fotos = Foto.where(album_id: @album.id).where(categoria_id: 2)
+    @fotos = Foto.where(album_id: @album.id)
   end
 
 

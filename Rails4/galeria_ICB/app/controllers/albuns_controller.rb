@@ -7,7 +7,7 @@ class AlbunsController < ApplicationController
   # GET /albuns.json
 
 
-=begin
+
 
   def escolher_capa
     set_album
@@ -25,7 +25,7 @@ class AlbunsController < ApplicationController
     end
   end
 
-=end
+
 
 
   def index
@@ -55,8 +55,8 @@ class AlbunsController < ApplicationController
   # POST /albuns
   # POST /albuns.json
   def create
-    #default_index = params[:foto][:capa]
-    #params[:album][:fotos_attributes][:default_index][:default] = true
+   # default_index = params[:foto][:capa]
+   # params[:album][:fotos_attributes][:default_index][:default] = true
     @album = Album.new(album_params)
 
     respond_to do |format|
@@ -82,7 +82,7 @@ class AlbunsController < ApplicationController
     #params[:album][:fotos_attributes][:default_index][:default] = true
     respond_to do |format|
       if @album.update(album_params)
-       # @capa = @album.capa
+       @capa = @album.capa
        # repete_legenda(@album.id)
         format.html { redirect_to @album, notice: 'Album atualizado com sucesso .' }
         format.json { render :show, status: :ok, location: @album }

@@ -24,8 +24,8 @@ Rails.application.routes.draw do
 
 
   # You can have the root of your site routed with "root"
-  #root 'colecao#index'
-  root 'albuns#index'
+  root 'colecao#index'
+
 
 
   # Example of regular route:
