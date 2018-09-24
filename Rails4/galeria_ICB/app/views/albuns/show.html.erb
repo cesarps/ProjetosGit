@@ -57,9 +57,20 @@
 -->
 
 <% if @album.fotos.any? %>
+    <div class="panel panel-default">
+    <div class="panel panel-heading"> Fotos </div>
+    <div class="row">
     <% @album.fotos.each do |af| %>
-        <%= image_tag(af.arquivo_url) if af.present? %>
+          <div class="col-lg-4">
+          <div class="img-rounded">
+        <%= link_to(image_tag(af.arquivo_url,size: "200x200"), af.arquivo_url,  target: '_blank') if af.present? %>
+            <hr>
+          </div>
+          </div>
     <% end %>
+    </div>
+    </div>
+
 <% end %>
 
 
