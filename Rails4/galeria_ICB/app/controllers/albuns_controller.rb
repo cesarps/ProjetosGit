@@ -25,6 +25,13 @@ class AlbunsController < ApplicationController
     end
   end
 
+  def definir_legendas
+    set_album
+  end
+
+
+
+
 
 
 
@@ -41,8 +48,8 @@ class AlbunsController < ApplicationController
   # GET /albuns/new
   def new
     @album = Album.new
-    @tag = @album.tags.build if @album.tags.empty?
-    @foto = @album.fotos.build  if @album.fotos.empty?
+    @album.tags.build if @album.tags.empty?
+    @album.fotos.build  if @album.fotos.empty?
 
   end
 
@@ -78,11 +85,10 @@ class AlbunsController < ApplicationController
   # PATCH/PUT /albuns/1
   # PATCH/PUT /albuns/1.json
   def update
-    #default_index = params[:foto][:capa]
-    #params[:album][:fotos_attributes][:default_index][:default] = true
     respond_to do |format|
       if @album.update(album_params)
        @capa = @album.capa
+
        # repete_legenda(@album.id)
         format.html { redirect_to @album, notice: 'Album atualizado com sucesso .' }
         format.json { render :show, status: :ok, location: @album }
@@ -128,6 +134,6 @@ class AlbunsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def album_params
-      params.require(:album).permit(:data_evento, :nome_evento_assunto, :departamento_id, :nome_fotografo, :endereco, :categoria_id, :capa,  tags_attributes:[:id,:nome, :_destroy], fotos_attributes:[:id, :album_id, :arquivo])
+      params.require(:album).permit(:data_evento, :nome_evento_assunto, :departamento_id, :nome_fotografo, :endereco, :categoria_id, :capa,  tags_attributes:[:id,:nome, :_destroy], fotos_attributes:[:id, :album_id, :arquivo, :legenda])
     end
 end

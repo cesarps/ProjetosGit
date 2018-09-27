@@ -5,7 +5,6 @@
       <div class="row">
         <% @album.fotos.each do |af| %>
             <div class="col-lg-4">
-              <!--<div class="img-rounded"> < %= image_tag(af.arquivo_url(:thumb)) if af.present? %> &nbsp < %= radio_button_tag :capa, af.id %> <hr> </div> -->
               <div class="img-rounded"> <%= image_tag(af.arquivo_url, size: "200x200") if af.present? %> &nbsp <%= radio_button_tag :capa, af.id %> <hr> </div>
             </div>
         <% end %>

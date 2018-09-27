@@ -3,6 +3,7 @@ class FotosController < ApplicationController
 
   # GET /fotos
   # GET /fotos.json
+
   def index
     @fotos = Foto.all
   end
@@ -20,6 +21,7 @@ class FotosController < ApplicationController
   # GET /fotos/1/edit
   def edit
   end
+
 
   # POST /fotos
   # POST /fotos.json
@@ -69,6 +71,6 @@ class FotosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def foto_params
-      params.require(:foto).permit(:album_id, :arquivo)
+      params.require(:foto).permit(:album_id, :arquivo, :legenda)
     end
 end

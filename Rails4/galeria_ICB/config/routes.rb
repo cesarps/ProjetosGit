@@ -5,6 +5,14 @@ Rails.application.routes.draw do
 
 
 
+
+
+
+  #get 'tela_legendas/:id' => 'albuns#tela_legendas', as: 'tela_legendas'
+  #get 'marcar_legendas/:id' => 'albuns#marcar_legendas', as: 'marcar_legendas'
+
+
+  get 'definir_legendas/:id' => 'albuns#definir_legendas', as: 'definir_legendas'
   get 'escolhe_capa/:id' => 'albuns#escolher_capa', as: 'escolhe_capa'
   get 'definir_capa/:id' => 'albuns#definir_capa', as: 'definir_capa'
   get 'mostrar/:id' => 'colecao#mostrar', as: 'mostrar'
@@ -17,6 +25,7 @@ Rails.application.routes.draw do
   resources :categorias
   resources :colecao
   resources :tags
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

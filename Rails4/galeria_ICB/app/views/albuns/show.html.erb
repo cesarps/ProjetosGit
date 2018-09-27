@@ -93,6 +93,7 @@
 
 <%= link_to 'Editar', edit_album_path(@album), class: 'btn btn-primary active' %> |
 <%= link_to 'Voltar', albuns_path, class: 'btn btn-default'  %>
+<%= link_to 'Definir legendas',definir_legendas_path(@album), class: 'btn btn-default' %>
 <% if @album.capa.nil? %>
     <%= link_to 'Escolher a capa desse album agora ', escolhe_capa_path(@album), class: 'btn btn-default' %>
 <% end %>

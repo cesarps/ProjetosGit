@@ -38,6 +38,7 @@
       <th></th>
       <th></th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -56,6 +57,7 @@
         <td class="text-center"><%= link_to 'Mostrar', album, class: 'btn btn-default' %></td>
         <td class="text-center"><%= link_to 'Editar', edit_album_path(album), class: 'btn btn-primary active' %></td>
         <td class="text-center"><%= link_to 'Apagar', album, method: :delete, data: { confirm: 'Tem certeza?' }, class: 'btn btn-danger active' %></td>
+        <!--- <td class="text-center">< %= link_to 'Definir legendas', tela_legendas_path(album)  %>  </td> -->
       </tr>
     <% end %>
   </tbody>

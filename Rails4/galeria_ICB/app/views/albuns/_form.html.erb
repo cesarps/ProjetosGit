@@ -53,20 +53,14 @@
       <% end %>
     </div>
 
-
-
-
-
     <div  class="panel panel-default">
-      <div class="panel panel-heading"> Tags </div>
+    <div class="panel panel-heading"> Tags </div>
 
     <%= f.fields_for :tags do |tag|  %>
         <%= render 'tag_fields', f:tag %>
     <% end %>
     <p><%= link_to_add_association '+', f, :tags,   class: "btn btn-primary active" %> </p>
-
     </div>
-
 
     <div class="actions">
     <%= f.submit "Enviar", class: "btn btn-primary active" %>
