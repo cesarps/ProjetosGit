@@ -4,8 +4,12 @@ class Album < ActiveRecord::Base
   has_many :tags, dependent: :destroy
   has_many :fotos, dependent: :destroy
 
+
+
   accepts_nested_attributes_for :tags, :allow_destroy => true
-  accepts_nested_attributes_for :fotos, :allow_destroy => true, reject_if: proc { |a| a['arquivo'].blank? }
+  #accepts_nested_attributes_for :fotos, :allow_destroy => true, reject_if: proc { |a| a['arquivo'].blank? }
+  accepts_nested_attributes_for :fotos, :allow_destroy => true
+
 
   validates_presence_of :data_evento
   validates_presence_of :nome_evento_assunto

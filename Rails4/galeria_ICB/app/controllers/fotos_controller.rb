@@ -16,6 +16,7 @@ class FotosController < ApplicationController
   # GET /fotos/new
   def new
     @foto = Foto.new
+
   end
 
   # GET /fotos/1/edit

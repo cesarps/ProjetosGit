@@ -1,30 +1,25 @@
 Rails.application.routes.draw do
 
-  resources :fotos
+
+
  # get 'tags/index'
 
 
-
-
-
-
-  #get 'tela_legendas/:id' => 'albuns#tela_legendas', as: 'tela_legendas'
-  #get 'marcar_legendas/:id' => 'albuns#marcar_legendas', as: 'marcar_legendas'
-
-
-  get 'definir_legendas/:id' => 'albuns#definir_legendas', as: 'definir_legendas'
   get 'escolhe_capa/:id' => 'albuns#escolher_capa', as: 'escolhe_capa'
   get 'definir_capa/:id' => 'albuns#definir_capa', as: 'definir_capa'
   get 'mostrar/:id' => 'colecao#mostrar', as: 'mostrar'
   get 'busca_tag' => 'colecao#busca_tag', as: 'busca_tag'
   get 'resultado_busca_tag' => 'colecao#resultado_busca_tag', as: 'resultado_busca_tag'
   get 'pesquisa' => 'colecao#pesquisa', as: 'pesquisa'
+  get 'repete_legenda' => 'albuns#repete_legenda', as: 'repete_legenda'
 
   resources :albuns
+  resources :fotos
   resources :departamentos
   resources :categorias
   resources :colecao
   resources :tags
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

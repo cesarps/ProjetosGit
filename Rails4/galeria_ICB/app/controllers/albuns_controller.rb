@@ -25,15 +25,6 @@ class AlbunsController < ApplicationController
     end
   end
 
-  def definir_legendas
-    set_album
-  end
-
-
-
-
-
-
 
   def index
     @albuns = Album.all.order("data_evento desc")
@@ -51,12 +42,17 @@ class AlbunsController < ApplicationController
     @album.tags.build if @album.tags.empty?
     @album.fotos.build  if @album.fotos.empty?
 
+
   end
 
   # GET /albuns/1/edit
   def edit
+
+    @fotos = @album.fotos.all
+    @total = @album.fotos.count
     @album.tags.build if @album.tags.empty?
     @album.fotos.build  if @album.fotos.empty?
+
   end
 
   # POST /albuns
@@ -65,19 +61,20 @@ class AlbunsController < ApplicationController
    # default_index = params[:foto][:capa]
    # params[:album][:fotos_attributes][:default_index][:default] = true
     @album = Album.new(album_params)
-
     respond_to do |format|
       if @album.save
         params[:fotos]['arquivo'].each do |a|
           @foto = @album.fotos.create!(:arquivo => a, :album_id => @album.id)
         end
-       # repete_legenda(@album.id)
+
         format.html { redirect_to @album, notice: 'Album criado com sucesso.' }
         format.json { render :show, status: :created, location: @album }
       else
         format.html { render :new }
         format.json { render json: @album.errors, status: :unprocessable_entity }
       end
+      # aqui vai o código do concluir_legenda que vai gerar registros vazios de legendas
+
 
     end
   end
@@ -88,8 +85,7 @@ class AlbunsController < ApplicationController
     respond_to do |format|
       if @album.update(album_params)
        @capa = @album.capa
-
-       # repete_legenda(@album.id)
+       repete_legenda
         format.html { redirect_to @album, notice: 'Album atualizado com sucesso .' }
         format.json { render :show, status: :ok, location: @album }
       else
@@ -109,22 +105,28 @@ class AlbunsController < ApplicationController
     end
   end
 
-=begin
-  def repete_legenda(id)
-    @album = Album.find(id)
-    leg_ant = ""
+
+
+  def repete_legenda
+    valor_legenda = ""
+    @total = @album.fotos.count
+
+
     @album.fotos.each do |f|
-      if f.legenda != ""
-        leg_ant = f.legenda
+      if f.subtitle != "" and valor_legenda == ""
+        valor_legenda = f.subtitle
       end
-      if f.legenda == ""
-        f.legenda = leg_ant
-        f.save
+    end
+
+
+
+    @album.fotos.each do |f|
+      if f.subtitle.blank? or f.subtitle.nil?
+        f.subtitle = valor_legenda
+        f.save!
       end
     end
   end
-=end
-
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -134,6 +136,6 @@ class AlbunsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def album_params
-      params.require(:album).permit(:data_evento, :nome_evento_assunto, :departamento_id, :nome_fotografo, :endereco, :categoria_id, :capa,  tags_attributes:[:id,:nome, :_destroy], fotos_attributes:[:id, :album_id, :arquivo, :legenda])
+        params.require(:album).permit(:data_evento, :nome_evento_assunto, :departamento_id, :nome_fotografo, :endereco, :categoria_id, :capa,  tags_attributes:[:id,:nome, :_destroy], fotos_attributes:[:id, :arquivo, :subtitle,:uniq_subtitle,  :_destroy], legendas_attributes:[:id, :foto_id,:album_id, :texto])
     end
 end

@@ -1,3 +1,15 @@
+<script type="text/javascript">
+  $(function() {
+      $('#repetir').onclick(function() {
+          total = $('#total').val();
+          echo (total);
+
+      });
+  });
+</script>
+
+
+
 <%= form_for(@album) do |f| %>
   <% if @album.errors.any? %>
     <div id="error_explanation">
@@ -32,25 +44,36 @@
     <%= f.text_area :endereco, class: 'form-control' %>
   </div>
 
- <!--
-    <div  class="panel panel-default">
-      <div class="panel panel-heading"> Fotos </div>
-      < %= f.fields_for :fotos do |fot|  %>
-           < %= render 'foto_fields', f:fot %>
-      < % end %>
-      <p>< %= link_to_add_association '+', f, :fotos,  class: "btn btn-primary active" %> </p>
 
-    </div>
--->
-
+    <% @bEntroulopping = false %>
     <div class="panel panel-default">
-      <div class="panel panel-heading"> Fotos</div>
+      <div class="panel panel-heading"> Fotos e Legendas</div>
+      <h5> Insira as legendas das fotos nos campos mais abaixo</h5>
+      <h5> Para a mesma legenda em todas as fotos, coloque em apenas um campo e escolha essa opção. </h5>
       <%= f.fields_for :fotos do |fot| %>
-        <div class="field">
-          <%= fot.label :foto %>
-          <%= fot.file_field :arquivo, multiple: true, name: "fotos[arquivo][]" %>
+        <div class="row">
+          <% if @bEntroulopping == false %>
+              <% @album.fotos.each do |af| %>
+                  <div class="col-lg-4">
+                    <h3> <%= af.id %> </h3>
+                    <%= image_tag(af.arquivo_url,size: "200x200") if af.present? %> <br>
+                    <%= af.arquivo_identifier %>  <%= "/" +  af.subtitle if !af.subtitle.nil?  %>
+                  </div>
 
+              <% end %>
+              <% @bEntroulopping = true %>
+          <% end %>
         </div>
+          <hr>
+          <%= fot.label "Apagar" %>
+          <% if fot.object.id == @album.capa %>
+              <%= fot.check_box :_destroy, disabled: true %>
+          <% else %>
+              <%= fot.check_box :_destroy %>
+          <% end %>
+          <%= fot.text_field :id, size: 10,  readonly:true %>
+          <%= fot.text_field :subtitle %>
+
       <% end %>
     </div>
 

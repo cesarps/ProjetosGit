@@ -23,38 +23,6 @@
   <%= @album.endereco %>
 </p>
 
-<!--
-<p>
-  <strong>Categoria:</strong>
-  < %= @album.categoria.nome %>
-</p>
--->
-
-
-<!--
-< % if @album.fotos.any? %>
-    <div class="panel panel-default">
-      <div class="panel panel-heading"> Fotos </div>
-      <div class="row">
-        < % @album.fotos.each do |af| %>
-                <div class="col-lg-4">
-                  <div class="img-rounded">
-                    < % if af.id == @album.capa %>
-                        &nbsp
-                        <i class="glyphicon glyphicon-asterisk"></i>
-                    < % end %>
-                    < %= link_to( image_tag(af.arquivo_url(:thumb)),af.arquivo_url, target: "_blank") if af.present? %> <br>
-                    < %= af.legenda %> /  < %= af.arquivo_identifier %> / < %= af.categoria.nome %>
-                    <hr>
-                  </div>
-                </div>
-        < % end %>
-      </div>
-    </div>
-< % end %>
-
-
--->
 
 <% if @album.fotos.any? %>
     <div class="panel panel-default">
@@ -67,7 +35,8 @@
                 &nbsp
                 <i class="glyphicon glyphicon-asterisk"></i>
             <% end %>
-        <%= link_to(image_tag(af.arquivo_url,size: "200x200"), af.arquivo_url,  target: '_blank') if af.present? %>
+        <%= link_to(image_tag(af.arquivo_url,size: "200x200"), af.arquivo_url,  target: '_blank') if af.present? %> <br>
+            <%= af.arquivo_identifier %>  <%= "/" +  af.subtitle if !af.subtitle.nil?  %>
             <hr>
           </div>
           </div>
@@ -91,9 +60,10 @@
     </div>
 <% end %>
 
-<%= link_to 'Editar', edit_album_path(@album), class: 'btn btn-primary active' %> |
+<%= link_to 'Editar/Inserir legendas', edit_album_path(@album), class: 'btn btn-primary active' %> |
 <%= link_to 'Voltar', albuns_path, class: 'btn btn-default'  %>
-<%= link_to 'Definir legendas',definir_legendas_path(@album), class: 'btn btn-default' %>
+
+
 <% if @album.capa.nil? %>
     <%= link_to 'Escolher a capa desse album agora ', escolhe_capa_path(@album), class: 'btn btn-default' %>
 <% end %>

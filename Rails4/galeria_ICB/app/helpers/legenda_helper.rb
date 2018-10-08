@@ -1,0 +1,2 @@
+module LegendaHelper
+end
