@@ -1,0 +1,27 @@
+<h1>Lista de Permitidos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Usuário</th>
+      <th>Perfil</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @permitidos.each do |permitido| %>
+      <tr>
+        <td><%= permitido.usuario.nomeUsuario %></td>
+        <td><%= permitido.perfil.tipo %></td>
+        <td><%= link_to 'Mostrar', permitido %></td>
+        <td><%= link_to 'Editar', edit_permitido_path(permitido) %></td>
+        <td><%= link_to 'Apagar', permitido, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Adicionar permissão', new_permitido_path %>

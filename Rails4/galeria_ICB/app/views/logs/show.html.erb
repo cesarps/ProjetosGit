@@ -1,0 +1,23 @@
+
+<p>
+  <strong>Ação:</strong>
+  <%= @log.acao %>
+</p>
+
+<p>
+  <strong>IP:</strong>
+  <%= @log.ip %>
+</p>
+
+<p>
+  <strong>Usuário:</strong>
+  <%= @log.usuario.nomeUsuario %>
+</p>
+
+<p>
+  <strong>Data:</strong>
+  <%= @log.created_at.strftime("%d/%m/%Y %H:%M") %>
+</p>
+
+
+<%= link_to 'Voltar', logs_path %>

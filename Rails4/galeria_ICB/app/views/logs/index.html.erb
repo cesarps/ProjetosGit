@@ -1,0 +1,27 @@
+<h1>Lista de Logs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ação</th>
+      <th>IP</th>
+      <th>Usuário</th>
+      <th>Data da ação</th>
+      <th>Detalhes</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @logs.each do |log| %>
+      <tr>
+        <td><%= log.acao %></td>
+        <td><%= log.ip %></td>
+        <td><%= log.usuario.nomeUsuario %> </td>
+        <td><%= log.created_at.strftime("%d/%m/%Y %H:%M") %></td>
+        <td><%= link_to 'Mostrar detalhes', log %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

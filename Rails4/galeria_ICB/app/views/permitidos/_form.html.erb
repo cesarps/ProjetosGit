@@ -1,0 +1,27 @@
+<%= form_for(@permitido) do |f| %>
+  <% if @permitido.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@permitido.errors.count, "error") %> prohibited this permitido from being saved:</h2>
+
+      <ul>
+      <% @permitido.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="field">
+      <%= f.label :usuario_id, "Usuário" %><br>
+      <%= f.select("usuario_id", Usuario.all.collect {|l| [ l.nomeUsuario, l.id ] })  %>
+    </div>
+
+    <div class="field">
+      <%= f.label :perfil_id, "Perfil" %><br>
+      <%= f.select("perfil_id", Perfil.all.collect {|l| [ l.tipo, l.id ] })  %>
+    </div>
+
+  <div class="actions">
+    <%= f.submit "Salvar" %>
+  </div>
+<% end %>

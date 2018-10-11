@@ -1,0 +1,76 @@
+<h1>Lista de Usuários</h1>
+
+<% @usuarios.each do |usuario| %>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Login</th>
+                <th>Nome </th>
+                <th>Tipo </th>
+                <th>E-mail Principal</th>
+                <th>E-mail Alternativo</th>
+                <th>E-mail USP</th>
+                <th>Telefone</th>
+                <th>Ramal</th>
+                <th colspan="2"></th>
+            </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+            <td><%= usuario.loginUsuario %></td>
+            <td><%= usuario.nomeUsuario %></td>
+            <td><%= usuario.tipoUsuario %></td>
+            <td><%= usuario.emailPrincipalUsuario %></td>
+            <td><%= usuario.emailAlternativoUsuario %></td>
+            <td><%= usuario.emailUspUsuario %></td>
+            <td><%= usuario.numeroTelefoneFormatado %></td>
+            <td><%= usuario.ramalUsp %></td>
+            <td><%= link_to 'Editar', edit_usuario_path(usuario) %></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Vinculo</th>
+                <th>Nome do vinculo</th>
+                <th>Sigla da unidade</th>
+                <th>Nome da unidade</th>
+                <th>Codigo do setor</th>
+                <th>Nome do setor</th>
+                <th>Nome da função</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% @tipovinculo = TipoVinculo.where(usuario_id: usuario.id) %>
+
+            <% @tipovinculo.each do |v| %>
+
+                <tr>
+                    <td><%= v.tipoVinculo %></td>
+                    <td><%= v.nomeVinculo %></td>
+                    <td><%= v.siglaUnidade %></td>
+                    <td><%= v.nomeUnidade %></td>
+                    <td><%= v.codigoSetor %></td>
+                    <td><%= v.nomeSetor %></td>
+                    <td><%= v.nomeAbreviadoFuncao %></td>
+                </tr>
+            <% end %>
+
+        </tbody>
+    </table>
+
+    <br>
+
+<% end %>
+
+<br>
+
+
+
+
+

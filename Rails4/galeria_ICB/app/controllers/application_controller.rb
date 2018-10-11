@@ -3,11 +3,19 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  def check_logged
-    authenticate_or_request_with_http_basic("index") do |username,password|
-      username=="admin" and password=="senha"
+
+
+  include WelcomeHelper
+  include LogsHelper
+
+=begin
+  def autenticado?
+    if session[:login].blank? or session[:login].nil?
+      redirect_to welcome_login_path
+      return false
     end
   end
+=end
 
 
 end

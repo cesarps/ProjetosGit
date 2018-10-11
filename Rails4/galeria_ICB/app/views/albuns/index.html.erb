@@ -33,12 +33,11 @@
     <tr>
       <th class="text-center"> Data</th>
       <th class="text-center"> Evento/Assunto</th>
-      <!--<th class="text-center"> Categoria </th> -->
       <th class="text-center"> Tags</th>
       <th></th>
       <th></th>
       <th></th>
-      <th></th>
+
     </tr>
   </thead>
 
@@ -47,7 +46,6 @@
       <tr>
         <td><%= album.data_evento.strftime("%d/%m/%Y") %></td>
         <td><%= album.nome_evento_assunto %></td>
-        <!-- <td>< %= album.categoria.nome %></td> -->
         <td>
           <% @tags = Tag.where("album_id = ?", album.id) %>
           <% @tags.each do |tag| %>
@@ -57,7 +55,7 @@
         <td class="text-center"><%= link_to 'Mostrar', album, class: 'btn btn-default' %></td>
         <td class="text-center"><%= link_to 'Editar', edit_album_path(album), class: 'btn btn-primary active' %></td>
         <td class="text-center"><%= link_to 'Apagar', album, method: :delete, data: { confirm: 'Tem certeza?' }, class: 'btn btn-danger active' %></td>
-        <!--- <td class="text-center">< %= link_to 'Definir legendas', tela_legendas_path(album)  %>  </td> -->
+
       </tr>
     <% end %>
   </tbody>

@@ -1,0 +1,14 @@
+
+<p>
+  <strong>Usuario</strong>
+  <%= @permitido.usuario.nomeUsuario %>
+</p>
+
+<p>
+  <strong>Perfil:</strong>
+  <%= @permitido.perfil.tipo %>
+</p>
+
+
+<%= link_to 'Editar', edit_permitido_path(@permitido) %> |
+<%= link_to 'Voltar', permitidos_path %>

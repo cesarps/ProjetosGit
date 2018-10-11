@@ -1,5 +1,6 @@
 class AlbunsController < ApplicationController
-  before_filter 'check_logged'
+
+
   before_action :set_album, only: [:show, :edit, :update, :destroy, :escolher_capa]
 
 
@@ -20,6 +21,7 @@ class AlbunsController < ApplicationController
       redirect_to escolhe_capa_path, notice:  "Escolha uma capa para seu album"
     else
       @album.save!
+      addlog("Definiu capa")
       @capa = @album.capa
       @foto = Foto.find(@capa)
     end
@@ -63,8 +65,10 @@ class AlbunsController < ApplicationController
     @album = Album.new(album_params)
     respond_to do |format|
       if @album.save
+        addlog("Criou um álbum")
         params[:fotos]['arquivo'].each do |a|
           @foto = @album.fotos.create!(:arquivo => a, :album_id => @album.id)
+          addlog("Inseriu foto")
         end
 
         format.html { redirect_to @album, notice: 'Album criado com sucesso.' }
@@ -84,6 +88,7 @@ class AlbunsController < ApplicationController
   def update
     respond_to do |format|
       if @album.update(album_params)
+       addlog("Atualizou um album")
        @capa = @album.capa
        repete_legenda
         format.html { redirect_to @album, notice: 'Album atualizado com sucesso .' }
@@ -100,6 +105,7 @@ class AlbunsController < ApplicationController
   def destroy
     @album.destroy
     respond_to do |format|
+      addlog("Apagou um álbum")
       format.html { redirect_to albuns_url, notice: 'Album apagado com sucesso.' }
       format.json { head :no_content }
     end
@@ -111,14 +117,11 @@ class AlbunsController < ApplicationController
     valor_legenda = ""
     @total = @album.fotos.count
 
-
     @album.fotos.each do |f|
       if f.subtitle != "" and valor_legenda == ""
         valor_legenda = f.subtitle
       end
     end
-
-
 
     @album.fotos.each do |f|
       if f.subtitle.blank? or f.subtitle.nil?

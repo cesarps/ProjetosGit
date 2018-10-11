@@ -73,6 +73,11 @@ end
   # paginação
   gem 'kaminari', '0.15.1'
 
+# senha unica e oauth
+gem 'senhaunica'
+gem 'oauth'
+
+
 
 
 

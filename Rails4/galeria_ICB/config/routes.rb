@@ -4,6 +4,10 @@ Rails.application.routes.draw do
 
  # get 'tags/index'
 
+  get 'welcome/login'
+  get 'welcome/callback'
+
+  get 'logout' => 'welcome#destroy', as: 'logout'
 
   get 'escolhe_capa/:id' => 'albuns#escolher_capa', as: 'escolhe_capa'
   get 'definir_capa/:id' => 'albuns#definir_capa', as: 'definir_capa'
@@ -19,6 +23,11 @@ Rails.application.routes.draw do
   resources :categorias
   resources :colecao
   resources :tags
+  resources :permitidos
+  resources :perfils
+  resources :logs
+  resources :usuarios
+
 
 
 

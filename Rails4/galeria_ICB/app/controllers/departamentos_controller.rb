@@ -1,5 +1,6 @@
 class DepartamentosController < ApplicationController
-  before_filter :check_logged
+
+
   before_action :set_departamento, only: [:show, :edit, :update, :destroy]
 
   # GET /departamentos
@@ -29,6 +30,7 @@ class DepartamentosController < ApplicationController
 
     respond_to do |format|
       if @departamento.save
+        addlog("Departamento criado")
         format.html { redirect_to @departamento, notice: 'Departamento criado com sucesso.' }
         format.json { render :show, status: :created, location: @departamento }
       else
@@ -43,6 +45,7 @@ class DepartamentosController < ApplicationController
   def update
     respond_to do |format|
       if @departamento.update(departamento_params)
+        addlog("Departamento atualizado")
         format.html { redirect_to @departamento, notice: 'Departamento atualizado com sucesso.' }
         format.json { render :show, status: :ok, location: @departamento }
       else
@@ -56,6 +59,7 @@ class DepartamentosController < ApplicationController
   # DELETE /departamentos/1.json
   def destroy
     @departamento.destroy
+    addlog("Departamento apagado")
     respond_to do |format|
       format.html { redirect_to departamentos_url, notice: 'Departamento apagado com sucesso.' }
       format.json { head :no_content }

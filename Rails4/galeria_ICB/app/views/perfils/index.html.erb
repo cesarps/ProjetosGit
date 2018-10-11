@@ -1,0 +1,24 @@
+<h1>Lista de Perfils</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tipo</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @perfils.each do |perfil| %>
+      <tr>
+        <td><%= perfil.tipo %></td>
+        <td><%= link_to 'Mostrar', perfil %></td>
+        <td><%= link_to 'Editar', edit_perfil_path(perfil) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Novo Perfil', new_perfil_path %>

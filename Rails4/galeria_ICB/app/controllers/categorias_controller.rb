@@ -1,5 +1,6 @@
 class CategoriasController < ApplicationController
-  before_filter :check_logged
+
+
   before_action :set_categoria, only: [:show, :edit, :update, :destroy]
 
   # GET /categorias
@@ -29,6 +30,7 @@ class CategoriasController < ApplicationController
 
     respond_to do |format|
       if @categoria.save
+        addlog("Categoria criada")
         format.html { redirect_to @categoria, notice: 'Categoria criada com sucesso.' }
         format.json { render :show, status: :created, location: @categoria }
       else
@@ -43,6 +45,7 @@ class CategoriasController < ApplicationController
   def update
     respond_to do |format|
       if @categoria.update(categoria_params)
+        addlog("Categoria atualizada")
         format.html { redirect_to @categoria, notice: 'Categoriaatualziada com sucesso.' }
         format.json { render :show, status: :ok, location: @categoria }
       else
@@ -56,6 +59,7 @@ class CategoriasController < ApplicationController
   # DELETE /categorias/1.json
   def destroy
     @categoria.destroy
+    addlog("Categoria apagada")
     respond_to do |format|
       format.html { redirect_to categorias_url, notice: 'Categoria apagada com sucesso.' }
       format.json { head :no_content }
