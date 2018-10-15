@@ -1,76 +1,52 @@
-<h1>Lista de Usuários</h1>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#usuarios').dataTable ({
+            "iDisplayLength": 10, <!-- 10 registros por pagina -->
+            "bPaginate": true,    <!-- Paginação  -->
+            "sPaginationType":"full_numbers",   <!-- Opção de mostrar numeros por pagina (1,2,3...) -->
+            "bJQueryUI":true,
+            "bLengthChange":false, <!-- Tira a opção de escolher quantos registros devem aoarecer por paagina -->
+            "ordering":     false,  <!-- Tira os links de ordenação de cada coluna -->
+            "aaSorting":    [],  <!-- Determina que a ordenação nao seguira nenhuma coluna (por estar vazio). -->
+            "oLanguage": { <!-- Inicia a tradução dos itens da tela -->
+                "sInfo":              "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                "sInfoFiltered":      "Filtrado de _MAX_ registros no total",
+                "sInfoEmpty":         "Sem resultados",
+                "sZeroRecords":       "Sem resultados",
+                "sSearch":            "Buscar",
+                "oPaginate": {
+                    "sFirst":         "Primeiro",
+                    "sPrevious":      "Anterior",
+                    "sNext":          "Próximo",
+                    "sLast":          "Ultimo"
+                }
+            }
+        })
+    })
+</script>
 
-<% @usuarios.each do |usuario| %>
+<h1>Usuários</h1>
 
-    <table border="1">
+
+    <table class="table table-bordered display" id="usuarios">
         <thead>
             <tr>
-                <th>Login</th>
-                <th>Nome </th>
-                <th>Tipo </th>
-                <th>E-mail Principal</th>
-                <th>E-mail Alternativo</th>
-                <th>E-mail USP</th>
-                <th>Telefone</th>
-                <th>Ramal</th>
-                <th colspan="2"></th>
+                <th class="text-center">Login</th>
+                <th class="text-center">Nome </th>
+                <th class="text-center">Tipo </th>
+                <th class="text-center">  E-mail Principal </th>
+                <th></th>
             </tr>
         </thead>
-
-        <tbody>
+          <% @usuarios.each do |usuario| %>
+    <tbody>
         <tr>
             <td><%= usuario.loginUsuario %></td>
             <td><%= usuario.nomeUsuario %></td>
             <td><%= usuario.tipoUsuario %></td>
-            <td><%= usuario.emailPrincipalUsuario %></td>
-            <td><%= usuario.emailAlternativoUsuario %></td>
-            <td><%= usuario.emailUspUsuario %></td>
-            <td><%= usuario.numeroTelefoneFormatado %></td>
-            <td><%= usuario.ramalUsp %></td>
-            <td><%= link_to 'Editar', edit_usuario_path(usuario) %></td>
+            <td><%= usuario.emailPrincipalUsuario %> </td>
+            <td class="text-center"><%= link_to 'Mostrar', usuario, class: "btn btn-default" %></td>
         </tr>
+      <% end %>
         </tbody>
     </table>
-
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Vinculo</th>
-                <th>Nome do vinculo</th>
-                <th>Sigla da unidade</th>
-                <th>Nome da unidade</th>
-                <th>Codigo do setor</th>
-                <th>Nome do setor</th>
-                <th>Nome da função</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            <% @tipovinculo = TipoVinculo.where(usuario_id: usuario.id) %>
-
-            <% @tipovinculo.each do |v| %>
-
-                <tr>
-                    <td><%= v.tipoVinculo %></td>
-                    <td><%= v.nomeVinculo %></td>
-                    <td><%= v.siglaUnidade %></td>
-                    <td><%= v.nomeUnidade %></td>
-                    <td><%= v.codigoSetor %></td>
-                    <td><%= v.nomeSetor %></td>
-                    <td><%= v.nomeAbreviadoFuncao %></td>
-                </tr>
-            <% end %>
-
-        </tbody>
-    </table>
-
-    <br>
-
-<% end %>
-
-<br>
-
-
-
-
-

@@ -1,9 +1,9 @@
-<h1>Lista de Perfils</h1>
+<h1>Perfis</h1>
 
-<table>
+<table class="table table-bordered">
   <thead>
     <tr>
-      <th>Tipo</th>
+      <th class="text-center">Tipo</th>
       <th colspan="2"></th>
     </tr>
   </thead>
@@ -12,8 +12,8 @@
     <% @perfils.each do |perfil| %>
       <tr>
         <td><%= perfil.tipo %></td>
-        <td><%= link_to 'Mostrar', perfil %></td>
-        <td><%= link_to 'Editar', edit_perfil_path(perfil) %></td>
+        <td class="text-center"><%= link_to 'Mostrar', perfil, class: "btn btn-default" %></td>
+        <td class="text-center"><%= link_to 'Editar', edit_perfil_path(perfil), class: "btn btn-primary active" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -21,4 +21,4 @@
 
 <br>
 
-<%= link_to 'Novo Perfil', new_perfil_path %>
+<%= link_to 'Novo Perfil', new_perfil_path, class: "btn btn-primary active" %>

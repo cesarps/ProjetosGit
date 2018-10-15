@@ -1,13 +1,41 @@
-<h1>Lista de Logs</h1>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#log').dataTable ({
+            "iDisplayLength": 15, <!-- 10 registros por pagina -->
+            "bPaginate": true,    <!-- Paginação  -->
+            "sPaginationType":"full_numbers",   <!-- Opção de mostrar numeros por pagina (1,2,3...) -->
+            "bJQueryUI":true,
+            "bLengthChange":false, <!-- Tira a opção de escolher quantos registros devem aoarecer por paagina -->
+            "ordering":     false,  <!-- Tira os links de ordenação de cada coluna -->
+            "aaSorting":    [],  <!-- Determina que a ordenação nao seguira nenhuma coluna (por estar vazio). -->
+            "oLanguage": { <!-- Inicia a tradução dos itens da tela -->
+                "sInfo":              "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                "sInfoFiltered":      "Filtrado de _MAX_ registros no total",
+                "sInfoEmpty":         "Sem resultados",
+                "sZeroRecords":       "Sem resultados",
+                "sSearch":            "Buscar",
+                "oPaginate": {
+                    "sFirst":         "Primeiro",
+                    "sPrevious":      "Anterior",
+                    "sNext":          "Próximo",
+                    "sLast":          "Ultimo"
+                }
+            }
+        })
+    })
+</script>
 
-<table>
+<h1>Logs</h1>
+
+<table class="table table-bordered display" id="log">
   <thead>
     <tr>
-      <th>Ação</th>
-      <th>IP</th>
-      <th>Usuário</th>
-      <th>Data da ação</th>
-      <th>Detalhes</th>
+      <th class="text-center">Ação</th>
+      <th class="text-center">IP</th>
+      <th class="text-center">Usuário</th>
+      <th class="text-center">Data da ação</th>
+      <th class="text-center">Detalhes</th>
+
     </tr>
   </thead>
 
@@ -18,7 +46,7 @@
         <td><%= log.ip %></td>
         <td><%= log.usuario.nomeUsuario %> </td>
         <td><%= log.created_at.strftime("%d/%m/%Y %H:%M") %></td>
-        <td><%= link_to 'Mostrar detalhes', log %></td>
+        <td class="text-center"><%= link_to 'Mostrar detalhes', log, class: "btn btn-default" %></td>
       </tr>
     <% end %>
   </tbody>

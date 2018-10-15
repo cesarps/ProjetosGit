@@ -1,9 +1,9 @@
 <h1>Departamentos</h1>
 
-<table class="table table-condensed">
+<table class="table table-bordered">
   <thead>
     <tr>
-      <th>Nome</th>
+      <th class="text-center">Nome</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -12,9 +12,9 @@
     <% @departamentos.each do |departamento| %>
       <tr>
         <td><%= departamento.nome %></td>
-        <td><%= link_to 'Mostrar', departamento, class: 'btn btn-default' %></td>
-        <td><%= link_to 'Editar', edit_departamento_path(departamento), class: 'btn btn-primary active' %></td>
-        <td><%= link_to 'Apagar', departamento, method: :delete, data: { confirm: 'Tem certeza?' }, class: 'btn btn-danger active' %></td>
+        <td class="text-center"><%= link_to 'Mostrar', departamento, class: 'btn btn-default' %></td>
+        <td class="text-center"><%= link_to 'Editar', edit_departamento_path(departamento), class: 'btn btn-primary active' %></td>
+        <td class="text-center"><%= link_to 'Apagar', departamento, method: :delete, data: { confirm: 'Tem certeza?' }, class: 'btn btn-danger active' %></td>
       </tr>
     <% end %>
   </tbody>

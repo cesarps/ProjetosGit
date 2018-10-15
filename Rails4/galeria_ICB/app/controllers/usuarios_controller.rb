@@ -1,12 +1,17 @@
 class UsuariosController < ApplicationController
 
-  before_action :set_usuario, only: [:edit, :update]
+  before_action :set_usuario, only: [:show, :edit, :update]
 
   def index
     @usuarios = Usuario.all
   end
 
   def edit
+  end
+
+
+  def show
+
   end
 
   def update

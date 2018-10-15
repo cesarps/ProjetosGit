@@ -1,7 +1,63 @@
 <p>
   <strong>Nome:</strong>
-  <%= @usuario.nome %>
+  <%= @usuario.nomeUsuario %>
 </p>
 
-<%= link_to 'Edit', edit_usuario_path(@usuario) %> |
-<%= link_to 'Back', usuarios_path %>
+<p>
+  <strong>  E-mail Principal </strong>
+  <%= @usuario.emailPrincipalUsuario %>
+</p>
+
+<p>
+  <strong> E-mail Alternativo </strong>
+  <%= @usuario.emailAlternativoUsuario %>
+</p>
+
+<p>
+  <strong> E-mail USP</strong>
+  <%= @usuario.emailUspUsuario %>
+</p>
+
+<p>
+  <strong> Telefone </strong>
+  <%= @usuario.numeroTelefoneFormatado %>
+</p>
+
+<p>
+  <strong>  Ramal </strong>
+  <%= @usuario.ramalUsp %>
+</p>
+
+
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th>Vinculo</th>
+    <th>Nome do vinculo</th>
+    <th>Sigla da unidade</th>
+    <th>Nome da unidade</th>
+    <th>Codigo do setor</th>
+    <th>Nome do setor</th>
+    <th>Nome da função</th>
+  </tr>
+
+  <h2> Vínculos </h2>
+
+  <% @tipovinculo = TipoVinculo.where(usuario_id: @usuario.id) %>
+  <% @tipovinculo.each do |v| %>
+  </thead>
+  <tbody>
+    <td><%= v.tipoVinculo %></td>
+    <td><%= v.nomeVinculo %></td>
+    <td><%= v.siglaUnidade %></td>
+    <td><%= v.nomeUnidade %></td>
+    <td><%= v.codigoSetor %></td>
+    <td><%= v.nomeSetor %></td>
+    <td><%= v.nomeAbreviadoFuncao %></td>
+  </tbody>
+  <% end %>
+</table>
+
+
+
+ <%= link_to 'Voltar', usuarios_path, class: "btn btn-default" %>

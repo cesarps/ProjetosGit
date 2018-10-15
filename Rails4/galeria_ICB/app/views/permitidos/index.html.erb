@@ -1,11 +1,40 @@
-<h1>Lista de Permitidos</h1>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#permitido').dataTable ({
+            "iDisplayLength": 10, <!-- 10 registros por pagina -->
+            "bPaginate": true,    <!-- Paginação  -->
+            "sPaginationType":"full_numbers",   <!-- Opção de mostrar numeros por pagina (1,2,3...) -->
+            "bJQueryUI":true,
+            "bLengthChange":false, <!-- Tira a opção de escolher quantos registros devem aoarecer por paagina -->
+            "ordering":     false,  <!-- Tira os links de ordenação de cada coluna -->
+            "aaSorting":    [],  <!-- Determina que a ordenação nao seguira nenhuma coluna (por estar vazio). -->
+            "oLanguage": { <!-- Inicia a tradução dos itens da tela -->
+                "sInfo":              "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                "sInfoFiltered":      "Filtrado de _MAX_ registros no total",
+                "sInfoEmpty":         "Sem resultados",
+                "sZeroRecords":       "Sem resultados",
+                "sSearch":            "Buscar",
+                "oPaginate": {
+                    "sFirst":         "Primeiro",
+                    "sPrevious":      "Anterior",
+                    "sNext":          "Próximo",
+                    "sLast":          "Ultimo"
+                }
+            }
+        })
+    })
+</script>
 
-<table>
+<h1>Permissões</h1>
+
+<table class="table table-bordered display" id="permitido">
   <thead>
     <tr>
       <th>Usuário</th>
       <th>Perfil</th>
-      <th colspan="3"></th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -14,9 +43,9 @@
       <tr>
         <td><%= permitido.usuario.nomeUsuario %></td>
         <td><%= permitido.perfil.tipo %></td>
-        <td><%= link_to 'Mostrar', permitido %></td>
-        <td><%= link_to 'Editar', edit_permitido_path(permitido) %></td>
-        <td><%= link_to 'Apagar', permitido, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+        <td class="text-center"><%= link_to 'Mostrar', permitido, class: "btn btn-default" %></td>
+        <td class="text-center"><%= link_to 'Editar', edit_permitido_path(permitido), class: "btn btn-primary active" %></td>
+        <td class="text-center"><%= link_to 'Apagar', permitido, method: :delete, data: { confirm: 'Você tem certeza?' }, class: "btn btn-danger active" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +53,4 @@
 
 <br>
 
-<%= link_to 'Adicionar permissão', new_permitido_path %>
+<%= link_to 'Adicionar permissão', new_permitido_path, class: "btn btn-primary active" %>
