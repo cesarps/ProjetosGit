@@ -32,7 +32,8 @@
       <% end %>
     </div>
 
-    <h2> Tags</h2>  <%= link_to "Ver todas as tags", tags_path %>
+    <h2> Tags</h2>
+    <%= link_to "Ver todas as tags", tags_path %>
     <h4>
       <% @tags.each do |t| %>
           <%= link_to t.nome, busca_tag_path(nome: t.nome)  %>
