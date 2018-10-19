@@ -12,7 +12,7 @@
       <div class="row">
         <% @fotos.each do |af| %>
           <div class="col-md-3">
-            <%= link_to(image_tag(af.arquivo_url,size: "150x150"), af.arquivo_url, :data => {:gallery => 'data-gallery'}, title: af.subtitle + "/" +  af.arquivo_identifier  ) if af.present? %> <br>
+            <%= link_to(image_tag(af.arquivo_url,size: "150x150"), af.arquivo_url, :data => {:gallery => 'data-gallery'}, title: af.subtitle + "/" +  af.arquivo_identifier ) if af.present? %> <br>
             <%= af.subtitle %> / <%= af.arquivo_identifier %>
             <hr>
           </div>

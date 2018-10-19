@@ -1,5 +1,8 @@
 class AlbunsController < ApplicationController
 
+  require 'rubygems'
+  require 'zip/zip'
+
 
   before_action :set_album, only: [:show, :edit, :update, :destroy, :escolher_capa]
 
@@ -68,7 +71,17 @@ class AlbunsController < ApplicationController
         addlog("Criou um álbum")
         params[:fotos]['arquivo'].each do |a|
           @foto = @album.fotos.create!(:arquivo => a, :album_id => @album.id)
-          addlog("Inseriu foto")
+        end
+        addlog("Inseriu fotos")
+        # aqui vai ser gerado um arquivo .zip para fazer o download depois
+        temp_dir = "#{Rails.root}/public/zips"
+        zip_path = File.join(temp_dir, @album.id.to_s + ".zip")
+        Zip::ZipFile::open(zip_path,true) do |zipfile|
+          @album.fotos.each do |af|
+            zipfile.get_output_stream(af.arquivo_identifier) do |io|
+              io.write af.arquivo.file.read
+            end
+          end
         end
 
         format.html { redirect_to @album, notice: 'Album criado com sucesso.' }
@@ -103,12 +116,18 @@ class AlbunsController < ApplicationController
   # DELETE /albuns/1
   # DELETE /albuns/1.json
   def destroy
+   remove_file
     @album.destroy
     respond_to do |format|
       addlog("Apagou um álbum")
       format.html { redirect_to albuns_url, notice: 'Album apagado com sucesso.' }
       format.json { head :no_content }
     end
+  end
+
+  def remove_file
+    set_album
+    File.delete(FileUtils.pwd +  "/public/zips/" + @album.id.to_s + ".zip")
   end
 
 

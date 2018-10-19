@@ -4,6 +4,7 @@ class ColecaoController < ApplicationController
   def index
     @album = Album.all.page(params[:page]).per(PER_PAGE)
     @tags = Tag.select('nome').order('id desc').uniq.limit(30)
+    @temp_dir = "zips/"
   end
 
   def mostrar

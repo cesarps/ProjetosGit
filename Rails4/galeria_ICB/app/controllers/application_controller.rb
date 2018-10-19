@@ -8,6 +8,8 @@ class ApplicationController < ActionController::Base
   include WelcomeHelper
   include LogsHelper
 
+
+
 =begin
   def autenticado?
     if session[:login].blank? or session[:login].nil?

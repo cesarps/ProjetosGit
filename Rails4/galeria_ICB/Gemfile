@@ -51,31 +51,38 @@ group :development do
 end
 
 
-  # bootstrap
-  gem 'twitter-bootstrap-rails'
+# bootstrap
+gem 'twitter-bootstrap-rails'
 
-  # datepicker
-  gem 'bootstrap-datepicker-rails'
+# datepicker
+gem 'bootstrap-datepicker-rails'
 
-  #nested
-  gem 'cocoon'
+#nested
+gem 'cocoon'
 
-  # upload de fotos
-  gem 'carrierwave'
-  gem 'rmagick', :require => 'RMagick'
+# upload de fotos
+gem 'carrierwave'
+gem 'rmagick', :require => 'RMagick'
 
-  # validação de tamanho de arquivo
-  gem 'file_validators'
+# validação de tamanho de arquivo
+gem 'file_validators'
 
-  # galeria em Rails
-  gem 'Bootstrap-Image-Gallery-rails'
+# galeria em Rails
+gem 'Bootstrap-Image-Gallery-rails'
 
-  # paginação
-  gem 'kaminari', '0.15.1'
+# paginação
+gem 'kaminari', '0.15.1'
 
 # senha unica e oauth
 gem 'senhaunica'
 gem 'oauth'
+
+#zip (download)
+gem 'rubyzip'
+gem 'zip-zip'
+
+
+
 
 
 

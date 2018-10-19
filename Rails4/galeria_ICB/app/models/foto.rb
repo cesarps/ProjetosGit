@@ -2,6 +2,7 @@ class Foto < ActiveRecord::Base
 
   after_destroy :remove_file_directory
 
+
   mount_uploader :arquivo, ArquivoUploader
   belongs_to :album
 
@@ -11,6 +12,7 @@ class Foto < ActiveRecord::Base
     path = File.expand_path(arquivo.store_path, arquivo.root)
     FileUtils.remove_dir(path, force: false)
   end
+
 
 
 end
