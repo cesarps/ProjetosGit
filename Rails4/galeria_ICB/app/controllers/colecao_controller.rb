@@ -16,6 +16,7 @@ class ColecaoController < ApplicationController
 
 
   def pesquisa
+    @temp_dir = "zips/"
     busca = ""
 
     if params[:data_inicio] != "" and params[:data_fim] != ""
@@ -36,11 +37,10 @@ class ColecaoController < ApplicationController
       busca = busca + " departamento_id = " + params[:departamento_id].to_s					# busca pelo departamento
     end
 
-
     if busca != ""
       @album = Album.find_by_sql("select * from albuns where " +  busca)
       if params[:legenda] != ""
-        @album = Album.joins(:fotos).where("fotos.subtitle like ? ", "%"+params[:legenda]+"%")			# busca pela legenda somente se ela for preenchida
+        @album = Album.joins(:fotos).where("fotos.subtitle like ? ", "%"+params[:legenda]+"%").uniq			# busca pela legenda somente se ela for preenchida
         respond_to do |format|
           format.html
         end

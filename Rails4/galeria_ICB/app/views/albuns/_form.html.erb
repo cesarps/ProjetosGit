@@ -32,37 +32,17 @@
     <%= f.text_area :endereco, class: 'form-control' %>
   </div>
 
- <!--
+
+
     <div  class="panel panel-default">
       <div class="panel panel-heading"> Fotos </div>
-      < %= f.fields_for :fotos do |fot|  %>
-           < %= render 'foto_fields', f:fot %>
-      < % end %>
-      <p>< %= link_to_add_association '+', f, :fotos,  class: "btn btn-primary active" %> </p>
-
-    </div>
--->
-
-    <div class="panel panel-default">
-      <div class="panel panel-heading"> Fotos</div>
-      <%= f.fields_for :fotos do |fot| %>
-        <div class="field">
-          <%= fot.label :foto %>
-          <%= fot.file_field :arquivo, multiple: true, name: "fotos[arquivo][]" %>
-
-        </div>
+      <%= f.fields_for :fotos do |fot|  %>
+           <%= render 'foto_fields', f:fot %>
       <% end %>
-    </div>
-
-
-
-
+   </div>
 
     <div  class="panel panel-default">
     <div class="panel panel-heading"> Tags </div>
-
-
-
     <%= f.fields_for :tags do |tag|  %>
         <%= render 'tag_fields', f:tag %>
     <% end %>

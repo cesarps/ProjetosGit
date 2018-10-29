@@ -1,23 +1,12 @@
 <div class="row">
-  <div class="col-md-8">
-
+  <div class="col-lg-4">
     <div class="input-group">
-     <span class="input-group-addon">
-        <%= f.label "Apagar" %>
-        <% if f.object.id == @album.capa %>
-            <%= f.check_box :_destroy, disabled: true %>
-        <% else %>
-            <%= f.check_box :_destroy %>
-        <% end %>
+      <span class="input-group-addon">
+        <%= f.label  "Insira suas fotos aqui" %>
       </span>
-
-      <table>
-        <tr>
-          <td> <%= f.text_field :arquivo_identifier, style: 'width: 450px', class: 'form-control', readonly: true %></td>
-          <td> <%= f.file_field :arquivo, multiple:true, name: "fotos[arquivo][]" %> </td>
-          <!-- <td>  < %= f.file_field :arquivo  %> </td> -->
-        </tr>
-      </table>
-   </div>
+      <%= f.file_field :arquivo, multiple: true, name: "fotos[arquivo][]", class: 'form-control' %>
+    </div>
   </div>
 </div>
+
+

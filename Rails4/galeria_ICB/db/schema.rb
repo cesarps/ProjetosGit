@@ -45,14 +45,6 @@ ActiveRecord::Schema.define(version: 20181009123555) do
     t.string   "subtitle",   limit: 255
   end
 
-  create_table "legendas", force: :cascade do |t|
-    t.integer  "album_id",   limit: 4
-    t.integer  "foto_id",    limit: 4
-    t.string   "texto",      limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
   create_table "logs", force: :cascade do |t|
     t.string   "acao",       limit: 255
     t.string   "ip",         limit: 255

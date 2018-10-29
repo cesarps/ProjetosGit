@@ -24,8 +24,9 @@ module WelcomeHelper
     @perfilscadastrados.each do |p|
       session[:perfil] << p.perfil.tipo
     end
-
   end
+
+
 
 
 end

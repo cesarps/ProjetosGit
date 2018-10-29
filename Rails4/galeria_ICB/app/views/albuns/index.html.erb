@@ -48,8 +48,12 @@
         <td><%= album.nome_evento_assunto %></td>
         <td>
           <% @tags = Tag.where("album_id = ?", album.id) %>
-          <% @tags.each do |tag| %>
-            <%= tag.nome %> ,
+          <% @tags.each_with_index  do |tag,i| %>
+              <% if @tags.size-1 == i %>
+                  <%= tag.nome %>
+              <% else %>
+                 <%= tag.nome + ',' %>
+              <% end %>
           <% end %>
         </td>
         <td class="text-center"><%= link_to 'Mostrar', album, class: 'btn btn-default' %></td>

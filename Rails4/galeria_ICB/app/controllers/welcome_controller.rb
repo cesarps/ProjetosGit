@@ -18,7 +18,11 @@ class WelcomeController < ApplicationController
     carregaperfils
 
     addlog("Fez login no sistema")
-
+    if session[:perfil].include? "Administrador"
+      redirect_to colecao_index_path, notice: "Login feito com sucesso"
+    else
+      redirect_to colecao_index_path, notice: "Area restrita ao administrador"
+    end
   end
 
   def tratauser

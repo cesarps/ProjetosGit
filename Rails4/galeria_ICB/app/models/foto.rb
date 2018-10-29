@@ -3,6 +3,8 @@ class Foto < ActiveRecord::Base
   after_destroy :remove_file_directory
 
 
+
+
   mount_uploader :arquivo, ArquivoUploader
   belongs_to :album
 

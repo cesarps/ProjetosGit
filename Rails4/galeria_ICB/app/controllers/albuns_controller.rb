@@ -4,6 +4,7 @@ class AlbunsController < ApplicationController
   require 'zip/zip'
 
 
+
   before_action :set_album, only: [:show, :edit, :update, :destroy, :escolher_capa]
 
 
@@ -74,25 +75,13 @@ class AlbunsController < ApplicationController
         end
         addlog("Inseriu fotos")
         # aqui vai ser gerado um arquivo .zip para fazer o download depois
-        temp_dir = "#{Rails.root}/public/zips"
-        zip_path = File.join(temp_dir, @album.id.to_s + ".zip")
-        Zip::ZipFile::open(zip_path,true) do |zipfile|
-          @album.fotos.each do |af|
-            zipfile.get_output_stream(af.arquivo_identifier) do |io|
-              io.write af.arquivo.file.read
-            end
-          end
-        end
-
+        cria_zip
         format.html { redirect_to @album, notice: 'Album criado com sucesso.' }
         format.json { render :show, status: :created, location: @album }
       else
         format.html { render :new }
         format.json { render json: @album.errors, status: :unprocessable_entity }
       end
-      # aqui vai o código do concluir_legenda que vai gerar registros vazios de legendas
-
-
     end
   end
 
@@ -104,6 +93,8 @@ class AlbunsController < ApplicationController
        addlog("Atualizou um album")
        @capa = @album.capa
        repete_legenda
+       remove_file
+       cria_zip
         format.html { redirect_to @album, notice: 'Album atualizado com sucesso .' }
         format.json { render :show, status: :ok, location: @album }
       else
@@ -125,6 +116,20 @@ class AlbunsController < ApplicationController
     end
   end
 
+  def cria_zip
+    temp_dir = "#{Rails.root}/public/zips"
+    zip_path = File.join(temp_dir, @album.id.to_s + ".zip")
+    Zip::ZipFile::open(zip_path,true) do |zipfile|
+      @album.fotos.each do |af|
+        zipfile.get_output_stream(af.arquivo_identifier) do |io|
+          io.write af.arquivo.file.read
+        end
+      end
+    end
+  end
+
+
+
   def remove_file
     set_album
     File.delete(FileUtils.pwd +  "/public/zips/" + @album.id.to_s + ".zip")
@@ -132,6 +137,8 @@ class AlbunsController < ApplicationController
 
 
 
+  # estudar essa def para pegar o penultimo registro preenchido com legenda e repetir onde não tem
+  # Caaso de colocar apenas uma (que repete nas denais) ou preecher todos os registros funciona normalmente
   def repete_legenda
     valor_legenda = ""
     @total = @album.fotos.count
@@ -142,11 +149,9 @@ class AlbunsController < ApplicationController
       end
     end
 
-    @album.fotos.each do |f|
-      if f.subtitle.blank? or f.subtitle.nil?
-        f.subtitle = valor_legenda
-        f.save!
-      end
+    @album.fotos.where("subtitle = ?", "").each do |f|
+      f.subtitle = valor_legenda
+      f.save!
     end
   end
 
@@ -158,6 +163,6 @@ class AlbunsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def album_params
-        params.require(:album).permit(:data_evento, :nome_evento_assunto, :departamento_id, :nome_fotografo, :endereco, :categoria_id, :capa,  tags_attributes:[:id,:nome, :_destroy], fotos_attributes:[:id, :arquivo, :subtitle,:uniq_subtitle,  :_destroy], legendas_attributes:[:id, :foto_id,:album_id, :texto])
+        params.require(:album).permit(:data_evento, :nome_evento_assunto, :departamento_id, :nome_fotografo, :endereco, :categoria_id, :capa,  tags_attributes:[:id,:nome, :_destroy], fotos_attributes:[:id, :arquivo, :subtitle, :_destroy])
     end
 end

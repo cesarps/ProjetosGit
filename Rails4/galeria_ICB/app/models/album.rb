@@ -19,14 +19,7 @@ class Album < ActiveRecord::Base
   validates_presence_of :nome_evento_assunto
   validates_presence_of :nome_fotografo
 
-=begin
-  def remove_file_zip
-    id = @album.id
-    path = "zips/" + id.to_s + ".zip"
-    FileUtils.rm(path, force: true)
-    redirect_to albuns_path
-  end
-=end
+
 
 
 end

@@ -11,7 +11,7 @@
             <%   @foto = Foto.find(@capa)  unless @capa.nil? %>
             <div class="col-md-3">
               <br><%= link_to "Download", @temp_dir + al.id.to_s + ".zip", disposition: 'attachment' %> <br>
-              <%= link_to (image_tag(@foto.arquivo_url, size: "200x200")), mostrar_path(al) %>
+              <%= link_to (image_tag(@foto.arquivo_url, width: '200')), mostrar_path(al) %>
               <p><%= al.nome_evento_assunto %> (<%= al.fotos.count %> fotos)</p>
             </div>
         <% end %>

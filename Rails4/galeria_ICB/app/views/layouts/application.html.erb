@@ -23,7 +23,7 @@
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li> <%= link_to "Coleção", colecao_index_path %></li>
-        <%  if session[:login].blank?  %>
+         <%  if session[:login].blank?  %>
             <li> <%= link_to "Login" , welcome_login_path %> </li>
          <% else %>
             <% if session[:perfil].include? "Administrador" %>
