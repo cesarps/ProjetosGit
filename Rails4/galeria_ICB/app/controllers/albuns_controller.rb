@@ -7,6 +7,8 @@ class AlbunsController < ApplicationController
 
   before_action :set_album, only: [:show, :edit, :update, :destroy, :escolher_capa]
 
+  before_filter 'autenticado?'
+
 
   # GET /albuns
   # GET /albuns.json

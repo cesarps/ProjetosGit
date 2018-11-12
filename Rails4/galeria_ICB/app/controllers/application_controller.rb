@@ -9,15 +9,13 @@ class ApplicationController < ActionController::Base
   include LogsHelper
 
 
-
-=begin
   def autenticado?
     if session[:login].blank? or session[:login].nil?
-      redirect_to colecao_path
+      redirect_to welcome_login_path
       return false
     end
   end
-=end
+
 
 
 
