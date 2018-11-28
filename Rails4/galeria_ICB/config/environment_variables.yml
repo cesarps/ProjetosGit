@@ -1,6 +1,0 @@
-development:
-  ICB_OAUTH: "icb_oauth"
-  SECRET_OAUTH: "6QCwxtVxNmdK4XvHp5XJ7SqznjwA7Ecq9VNzUpOW"
-production:
-  ICB_OAUTH: "icb_oauth"
-  SECRET_OAUTH: "6QCwxtVxNmdK4XvHp5XJ7SqznjwA7Ecq9VNzUpOW"
